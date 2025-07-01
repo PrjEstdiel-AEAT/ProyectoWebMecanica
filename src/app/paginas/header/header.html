@@ -1,0 +1,28 @@
+<header class="navbar-container">
+    <!-- Logo -->
+    <div class="navbar-logo">
+        <a href="/">
+            <img src="/img/logo.png" alt="Logo" />
+        </a>
+    </div>
+
+    <!-- Menú hamburguesa para móviles -->
+    <div class="hamburger-menu" (click)="toggleMenu()">☰</div>
+
+    <!-- Menú de navegación -->
+    <nav class="navbar-links" >
+        <ul [ngClass]="{ 'show': menuOpen }">
+            <li><a href="/" (click)="closeMenu()">Inicio</a></li>
+            <li><a href="nuestros-servicios" (click)="closeMenu()">Nuestros Servicios</a></li>
+            <li><a href="/nosotros" (click)="closeMenu()">Nosotros</a></li>
+            <li><a href="/contacto" (click)="closeMenu()">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Iniciar sesión con imagen -->
+    <div class="navbar-login">
+        <a href="/login">
+            <img src="/img/login.png" alt="Iniciar Sesión" />
+        </a>
+    </div>
+</header>

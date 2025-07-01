@@ -1,0 +1,19 @@
+footer {
+  background-color: #212529; // equivalente a "bg-dark"
+  color: white;
+  padding: 1.5rem 0; // equivalente a "py-4"
+  width: 100%;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}

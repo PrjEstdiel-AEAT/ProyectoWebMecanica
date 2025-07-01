@@ -1,0 +1,100 @@
+
+/* Contenedor principal de la barra de navegación */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFA500;
+    /* Fondo amarillo */
+    padding: 0px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Sombra ligera */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Logo */
+.navbar-logo img {
+    height: 150px;
+    /* Tamaño del logo */
+}
+
+/* Menú de navegación */
+.navbar-links ul {
+    display: flex;
+    gap: 20px;
+    /* Espacio entre enlaces */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links ul li a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+    /* Color del texto */
+    font-weight: bold;
+}
+
+.navbar-links ul li a:hover {
+    text-decoration: underline;
+    /* Subrayar al pasar el mouse */
+}
+
+/* Iniciar sesión con imagen */
+.navbar-login img {
+    height: 40px;
+    /* Tamaño de la imagen del login */
+    cursor: pointer;
+}
+
+/* Botón hamburguesa (invisible en pantallas grandes) */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: black;
+}
+
+/* Menú responsive en móviles */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-wrap: wrap;
+        /* Permite varias líneas en pantallas pequeñas */
+        padding: 10px;
+        /* Espaciado ajustado */
+    }
+
+    .navbar-logo img {
+        height: 40px;
+        /* Reducir tamaño del logo */
+    }
+
+    .navbar-links ul {
+        display: none;
+        /* Ocultar menú inicialmente */
+        flex-direction: column;
+        /* Colocar los enlaces verticalmente */
+        gap: 10px;
+        background-color: #FFD700;
+        /* Fondo amarillo más claro */
+        width: 100%;
+        /* Ocupa todo el ancho disponible */
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .navbar-links ul.show {
+        display: flex;
+        /* Mostrar el menú cuando esté activo */
+    }
+
+    .hamburger-menu {
+        display: block;
+        /* Mostrar botón hamburguesa */
+    }
+}
