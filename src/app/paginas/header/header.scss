@@ -6,23 +6,35 @@
     align-items: center;
     background-color: #FFA500;
     /* Fondo amarillo */
-    padding: 0px 20px;
+    padding: 0px 30px; /* Aumenté el padding horizontal */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     /* Sombra ligera */
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0; /* Mejor que usar width con calc */
     z-index: 1000;
+    box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
+    min-height: 80px; /* Altura mínima para consistencia */
 }
 
 /* Logo */
+.navbar-logo {
+    flex: 0 0 auto; /* No crece ni se encoge */
+}
+
 .navbar-logo img {
     height: 150px;
     /* Tamaño del logo */
 }
 
 /* Menú de navegación */
+.navbar-links {
+    flex: 1; /* Ocupa el espacio disponible en el centro */
+    display: flex;
+    justify-content: center;
+}
+
 .navbar-links ul {
     display: flex;
     gap: 20px;
@@ -46,10 +58,23 @@
 }
 
 /* Iniciar sesión con imagen */
+.navbar-login {
+    flex: 0 0 auto; /* No crece ni se encoge */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 10px; /* Pequeño margen del borde derecho */
+}
+
 .navbar-login img {
     height: 40px;
     /* Tamaño de la imagen del login */
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.navbar-login img:hover {
+    transform: scale(1.1);
 }
 
 /* Botón hamburguesa (invisible en pantallas grandes) */
@@ -67,11 +92,18 @@
         /* Permite varias líneas en pantallas pequeñas */
         padding: 10px;
         /* Espaciado ajustado */
+        width: calc(100% - 20px); /* Ajuste para padding en móviles */
     }
 
     .navbar-logo img {
         height: 40px;
         /* Reducir tamaño del logo */
+    }
+
+    .navbar-links {
+        order: 3; /* Colocar el menú al final */
+        flex-basis: 100%; /* Ocupa toda la línea */
+        justify-content: flex-start;
     }
 
     .navbar-links ul {
@@ -86,6 +118,7 @@
         /* Ocupa todo el ancho disponible */
         padding: 10px;
         border-radius: 5px;
+        margin-top: 10px;
     }
 
     .navbar-links ul.show {
@@ -96,5 +129,15 @@
     .hamburger-menu {
         display: block;
         /* Mostrar botón hamburguesa */
+        order: 2; /* Colocar entre logo y login */
+    }
+
+    .navbar-login {
+        order: 1; /* Mantener el login a la derecha */
+        padding-right: 5px;
+    }
+
+    .navbar-login img {
+        height: 35px; /* Tamaño ligeramente menor en móviles */
     }
 }
