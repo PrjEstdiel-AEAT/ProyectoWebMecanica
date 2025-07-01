@@ -1,5 +1,5 @@
 /* Contenedor principal */
-.login-container {
+.registro-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@
 }
 
 /* Tarjeta del formulario */
-.login-card {
+.registro-card {
   background: white;
   border-radius: 15px;
   padding: 40px;
@@ -32,7 +32,7 @@
 }
 
 /* Título */
-.login-title {
+.registro-title {
   text-align: center;
   margin-bottom: 30px;
   color: #333;
@@ -41,7 +41,7 @@
 }
 
 /* Formulario */
-.login-form {
+.registro-form {
   margin-bottom: 25px;
 }
 
@@ -125,13 +125,13 @@
   transform: translateY(0);
 }
 
-/* Link de registro */
-.register-link {
+/* Link de login */
+.login-link {
   text-align: center;
   margin-top: 20px;
 }
 
-.register-link p {
+.login-link p {
   margin: 0 0 8px 0;
   color: #666;
   font-size: 14px;
@@ -237,15 +237,15 @@
 
 /* Responsive */
 @media (max-width: 480px) {
-  .login-container {
+  .registro-container {
     padding: 10px;
   }
   
-  .login-card {
+  .registro-card {
     padding: 30px 20px;
   }
   
-  .login-title {
+  .registro-title {
     font-size: 24px;
   }
 }
