@@ -1,19 +1,129 @@
-footer {
-  background-color: #212529; // equivalente a "bg-dark"
-  color: white;
-  padding: 1.5rem 0; // equivalente a "py-4"
-  width: 100%;
+.footer-naranja {
+    background-color: orange;
+    color: #000;
+    font-family: Arial, sans-serif;
+    margin-top: auto;
+    padding: 0 40px; // Aumentar padding lateral
+}
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    text-align: center;
-  }
+.footer-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 1rem; // Reducir margen inferior
+    color: #000;
+}
 
-  p {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 400;
-  }
+.logo-footer {
+    max-height: 70px; // Reducir un poco la altura del logo
+    width: auto;
+}
+
+.contact-info .contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.6rem; // Reducir espaciado
+    font-size: 0.95rem;
+}
+
+.contact-info .contact-item i {
+    margin-right: 0.8rem;
+    width: 20px;
+    margin-top: 0.2rem;
+    font-size: 1.1rem;
+}
+
+.horarios-info {
+    p {
+        margin-bottom: 0.4rem; // Reducir espaciado
+        font-size: 0.95rem;
+        
+        strong {
+            font-weight: bold;
+        }
+    }
+}
+
+.previa-cita {
+    color: #000;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 0.95rem;
+    
+    &:hover {
+        color: #333;
+        text-decoration: underline;
+    }
+}
+
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; // Reducir gap entre iconos
+    margin-top: 0.3rem; // Reducir margen superior
+    align-items: flex-start;
+}
+
+.social-icon {
+    color: #000;
+    font-size: 1.6rem; // Reducir ligeramente el tamaño
+    transition: color 0.3s, transform 0.3s;
+    
+    &:hover {
+        color: #333;
+        transform: scale(1.1);
+    }
+}
+
+.border-warning {
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .footer-naranja {
+        .row {
+            text-align: center;
+        }
+        
+        .col-md-3 {
+            margin-bottom: 1.5rem; // Reducir margen en móvil
+        }
+        
+        .contact-info .contact-item {
+            justify-content: center;
+        }
+        
+        .social-icons {
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+// Ajustes adicionales para el layout
+.container {
+    max-width: 1500px; // Aumentar aún más el ancho máximo
+    padding-left: 50px; // Aumentar padding lateral
+    padding-right: 50px;
+}
+
+.py-4 {
+    padding-top: 1.8rem !important; // Reducir padding vertical
+    padding-bottom: 1.8rem !important;
+}
+
+.py-3 {
+    padding-top: 1rem !important; // Reducir padding del copyright
+    padding-bottom: 1rem !important;
+}
+
+// Ajustar el espaciado entre columnas
+.row {
+    margin-left: -25px; // Aumentar margen negativo
+    margin-right: -25px;
+    
+    .col-md-3 {
+        padding-left: 25px; // Aumentar padding lateral
+        padding-right: 25px;
+    }
 }
