@@ -1,5 +1,5 @@
 /* Contenedor principal */
-.login-container {
+.registro-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@
 }
 
 /* Tarjeta del formulario */
-.login-card {
+.registro-card {
   background: #FFA500 !important; /* Color naranja del header forzado */
   border-radius: 15px;
   padding: 40px;
@@ -32,7 +32,7 @@
 }
 
 /* Título */
-.login-title {
+.registro-title {
   text-align: center;
   margin-bottom: 30px;
   color: white; /* Texto blanco para contrastar con el fondo naranja */
@@ -42,7 +42,7 @@
 }
 
 /* Formulario */
-.login-form {
+.registro-form {
   margin-bottom: 25px;
 }
 
@@ -132,30 +132,27 @@
   transform: translateY(0);
 }
 
-/* Link de registro */
-.register-link {
+/* Link de login */
+.login-link {
   text-align: center;
   margin-top: 20px;
 }
 
-.register-link p {
+.login-link p {
   margin: 0 0 8px 0;
-  color: white;
+  color: #666;
   font-size: 14px;
 }
 
 .link {
-  color: white;
+  color: #667eea;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   transition: color 0.3s ease;
-  padding: 5px 10px;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .link:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  color: #764ba2;
   text-decoration: underline;
 }
 
@@ -247,15 +244,15 @@
 
 /* Responsive */
 @media (max-width: 480px) {
-  .login-container {
+  .registro-container {
     padding: 10px;
   }
   
-  .login-card {
+  .registro-card {
     padding: 30px 20px;
   }
   
-  .login-title {
+  .registro-title {
     font-size: 24px;
   }
 }

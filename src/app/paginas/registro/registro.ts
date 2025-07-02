@@ -4,14 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-registro',
   imports: [FormsModule, RouterLink, CommonModule],
-  templateUrl: './login.html',
-  styleUrl: './login.scss'
+  templateUrl: './registro.html',
+  styleUrl: './registro.scss'
 })
-export class Login {
+export class Registro {
   email: string = '';
   password: string = '';
+  confirmPassword: string = '';
   
   // Propiedades para manejar errores
   errors: { [key: string]: string } = {};
@@ -42,7 +43,7 @@ export class Login {
     this.showModal = false;
   }
 
-  login() {
+  register() {
     // Limpiar errores previos
     this.errors = {};
 
@@ -60,6 +61,17 @@ export class Login {
     if (!this.password) {
       this.errors['password'] = 'La contraseña es obligatoria';
       hasErrors = true;
+    } else if (this.password.length < 6) {
+      this.errors['password'] = 'La contraseña debe tener al menos 6 caracteres';
+      hasErrors = true;
+    }
+
+    if (!this.confirmPassword) {
+      this.errors['confirmPassword'] = 'Debes confirmar tu contraseña';
+      hasErrors = true;
+    } else if (this.password !== this.confirmPassword) {
+      this.errors['confirmPassword'] = 'Las contraseñas no coinciden';
+      hasErrors = true;
     }
 
     // Si hay errores, mostrar modal con el primer error
@@ -69,11 +81,10 @@ export class Login {
       return;
     }
 
-    // Aquí implementarías la lógica de autenticación real
-    // Por ahora, simulamos un login exitoso
-    this.showErrorModal(`¡Bienvenido, ${this.email}!`);
-    
-    // Aquí redirigirías a la página principal de la aplicación
-    // this.router.navigate(['/dashboard']);
+    // Si todo está bien, crear la cuenta
+    this.showErrorModal('¡Cuenta creada exitosamente!');
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 2000);
   }
 }
