@@ -1,0 +1,89 @@
+.hero-section {
+    background-image: url('/img/fondon.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.5); // capa oscura encima del fondo
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .hero-content {
+            color: white;
+            text-align: center;
+            padding: 20px;
+
+            h2,
+            h1,
+            p {
+                margin: 10px 0;
+            }
+
+            a {
+                margin-top: 20px;
+            }
+
+            .btn-contacto {
+                background-color: #FFD700; // amarillo
+                color: #5C4033; // marrón
+                font-weight: bold;
+                padding: 12px 24px;
+                font-size: 1.2rem;
+                border: none;
+                border-radius: 8px;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: #CCAC00; // amarillo más oscuro
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+.titulo-servicios {
+  text-align: center;
+  color: #3E2723; // marrón oscuro
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.servicios-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .texto-marron {
+    color: #6e4c1e; // Ajusta el color marrón a tu preferencia
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+}
+
+.btn-cuadro {
+    background-color: #FFD700; // amarillo
+    color: #5C4033; // marrón
+    font-weight: bold;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #CCAC00; // amarillo oscuro al pasar mouse
+        cursor: pointer;
+    }
+}
