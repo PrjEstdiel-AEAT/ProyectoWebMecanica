@@ -1,3 +1,105 @@
-<h2>Componente Contacto</h2>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
-<p>Contenido del componente Contacto ...</p>
+<h1 class="titulo-servicios">Comunícate con nosotros</h1>
+
+<div class="container servicios-container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-8 texto-marron text-center">
+            Conocer la opinión de nuestros clientes es muy importante para nosotros, extendemos la invitación a llenar
+            nuestro formulario y solicitar información sobre los servicios que ofrecemos. A la brevedad posible, uno de
+            nuestros representantes atenderá tu consulta.
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="registro-container">
+    <div class="registro-card">
+        <form (ngSubmit)="enviarMensaje()" class="registro-form">
+
+            <!-- Campo Nombre -->
+            <div class="form-group">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" id="nombre" class="form-control" [class.error]="errors['nombre']"
+                    [(ngModel)]="nombre" name="nombre" placeholder="Tu nombre completo" />
+                <div class="error-message" *ngIf="errors['nombre']">
+                    {{ errors['nombre'] }}
+                </div>
+            </div>
+
+            <!-- Campo Celular -->
+            <div class="form-group">
+                <label for="celular" class="form-label">Celular</label>
+                <input type="tel" id="celular" class="form-control" [class.error]="errors['celular']"
+                    [(ngModel)]="celular" name="celular" placeholder="9 dígitos" />
+                <div class="error-message" *ngIf="errors['celular']">
+                    {{ errors['celular'] }}
+                </div>
+            </div>
+
+            <!-- Campo Correo Electrónico -->
+            <div class="form-group">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" id="email" class="form-control" [class.error]="errors['email']" [(ngModel)]="email"
+                    name="email" placeholder="ejemplo@correo.com" />
+                <div class="error-message" *ngIf="errors['email']">
+                    {{ errors['email'] }}
+                </div>
+            </div>
+
+            <!-- Campo Mensaje -->
+            <div class="form-group">
+                <label for="mensaje" class="form-label">Mensaje</label>
+                <textarea id="mensaje" class="form-control" [class.error]="errors['mensaje']" [(ngModel)]="mensaje"
+                    name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí"></textarea>
+                <div class="error-message" *ngIf="errors['mensaje']">
+                    {{ errors['mensaje'] }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Enviar Mensaje
+            </button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h4>Notificación</h4>
+                <button class="close-btn" (click)="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>{{ modalMessage }}</p>
+                <ul *ngIf="mensajeEnviado">
+                    <li><strong>Nombre:</strong> {{ nombre }}</li>
+                    <li><strong>Celular:</strong> {{ celular }}</li>
+                    <li><strong>Correo Electrónico:</strong> {{ email }}</li>
+                    <li><strong>Mensaje:</strong> {{ mensaje }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!-- Mapa del taller mecánico -->
+<div class="mapa-container mt-4">
+  <h1 class="titulo-servicios">Ubícanos aquí</h1>
+  <div class="mapa-responsive">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3084.4048048559953!2d-76.91012512610598!3d-12.008446941186055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c38d92e99a07%3A0x79343465cc3d0a8f!2sMecanica%20Automotriz%20Alvino!5e1!3m2!1ses!2spe!4v1745299573231!5m2!1ses!2spe" 
+      width="100%" 
+      height="350" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
