@@ -69,11 +69,30 @@ export class Login {
       return;
     }
 
-    // Aquí implementarías la lógica de autenticación real
-    // Por ahora, simulamos un login exitoso
-    this.showErrorModal(`¡Bienvenido, ${this.email}!`);
-    
-    // Aquí redirigirías a la página principal de la aplicación
-    // this.router.navigate(['/dashboard']);
+    // Validar usuario contra la lista en localStorage
+    const usuariosStr = localStorage.getItem('usuarios') || '[]';
+    const usuarios = JSON.parse(usuariosStr);
+    const usuario = usuarios.find((u: any) => u.email === this.email && u.password === this.password);
+    if (!usuario) {
+      this.showErrorModal('Correo o contraseña incorrectos');
+      return;
+    }
+    localStorage.setItem('userLogged', 'true');
+    localStorage.setItem('user', this.email);
+    localStorage.setItem('nombre', usuario.nombre);
+    localStorage.setItem('apellido', usuario.apellido);
+    // Redirección inteligente
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+    if (redirect) {
+      this.router.navigate([redirect]);
+    } else {
+      this.router.navigate(['/inicio']);
+    }
+  }
+
+  // Método estático para obtener el usuario autenticado
+  static getAuthenticatedUser(): string | null {
+    return localStorage.getItem('user');
   }
 }

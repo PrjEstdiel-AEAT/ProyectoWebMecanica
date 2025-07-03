@@ -4,40 +4,41 @@
 <div class="hero-section">
     <div class="overlay">
         <div class="hero-content">
-            <h1>"Siéntete tranquilo, ESTAMOS DONDE VAYAS"</h1>
-            <h1>AUTOMOTIVE</h1>
-            <br>
+            <h1 class="hero-title">Servicios a Domicilio</h1>
+            <p class="hero-desc">Con AUTOMOTIVE, tu tranquilidad y comodidad son nuestra prioridad.</p>
         </div>
     </div>
 </div>
 
-<h1 class="titulo-servicios">Bienvenido</h1>
-
-<div class="container servicios-container">
+<div class="container servicios-container mt-5">
   <div class="row justify-content-center align-items-center">
-    <div class="col-md-8 texto-marron text-center">
-      Estás a punto de disfrutar Nuestros Servicios a Domicilio. Con AUTOMOTIVE podrás ahorrar tiempo y dinero
-      en la comodidad de tu hogar. No tendrás la necesidad de trasladarte a un taller para que tu auto obtenga el
-      mantenimiento que merece. Contamos con mecánicos profesionales, altamente calificados y certificados en toda
-      Lima Metropolitana.
+    <div class="col-lg-10">
+      <div class="presentacion-card p-4 mb-4">
+        <h3 class="mb-3">¿Por qué elegir nuestros servicios?</h3>
+        <ul class="list-unstyled mb-3">
+          <li>✔️ Mecánicos certificados y profesionales</li>
+          <li>✔️ Servicio rápido y seguro en todo Lima</li>
+          <li>✔️ Ahorra tiempo y dinero: vamos a donde estés</li>
+          <li>✔️ Atención personalizada y garantía de satisfacción</li>
+        </ul>
+        <p class="mt-2">Olvídate de traslados y largas esperas. ¡Nosotros llevamos el taller a tu puerta!</p>
+      </div>
     </div>
   </div>
 </div>
-
-<br>
 
 <h1 class="titulo-servicios">Nuestros Servicios</h1>
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-sm-10 col-md-6 col-lg-5 mb-4" *ngFor="let servicio of servicios">
-            <div class="card h-100">
-                <img [src]="servicio.imagen" class="card-img-top" alt="{{ servicio.titulo }}">
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{ servicio.titulo }}</h5>
-                    <p class="card-text">{{ servicio.descripcion }}</p>
-                    <a [routerLink]="['/login']" class="btn-cuadro">Reservar Cita</a>
+        <div class="col-sm-10 col-md-6 col-lg-4 mb-4" *ngFor="let servicio of servicios">
+            <div class="servicio-card h-100 p-3">
+                <div class="servicio-img-wrap mb-3">
+                    <img [src]="servicio.imagen" alt="{{ servicio.titulo }}" class="servicio-img">
                 </div>
+                <h5 class="servicio-title mb-2">{{ servicio.titulo }}</h5>
+                <p class="servicio-desc mb-3">{{ servicio.descripcion }}</p>
+                <a [routerLink]="['/login']" class="btn-cuadro">Reservar Cita</a>
             </div>
         </div>
     </div>

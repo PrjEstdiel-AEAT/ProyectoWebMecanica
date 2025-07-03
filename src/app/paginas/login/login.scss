@@ -1,24 +1,96 @@
-/* Contenedor principal */
-.login-container {
-  min-height: 100vh;
+.login-container.balloon-bg {
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff !important; /* Fondo blanco forzado */
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: none;
+  padding: 24px 0;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Tarjeta del formulario */
-.login-card {
-  background: #FFA500 !important; /* Color naranja del header forzado */
-  border-radius: 15px;
-  padding: 40px;
-  width: 100%;
-  max-width: 450px;
-  box-shadow: 0 15px 35px rgba(255, 165, 0, 0.3);
-  animation: slideUp 0.6s ease-out;
+@media (max-width: 900px) {
+  .login-container.balloon-bg {
+    padding: 10px 0;
+    min-height: 65vh;
+  }
+  .login-card.balloon-card {
+    max-width: 99vw;
+    padding: 24px 8px 16px 8px;
+  }
+  .login-title {
+    font-size: 1.3rem;
+    padding: 0.2em 0.7em;
+    border-radius: 11px;
+  }
 }
+@media (max-width: 600px) {
+  .login-container.balloon-bg {
+    padding: 2px 0;
+    min-height: 45vh;
+  }
+  .login-card.balloon-card {
+    padding: 10px 2px 10px 2px;
+  }
+  .login-title {
+    font-size: 1.1rem;
+    padding: 0.15em 0.5em;
+    border-radius: 8px;
+  }
+}
+
+
+.login-card.balloon-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 14px #ffd70033;
+  border: 1.5px solid #ffe25977;
+  color: #5C4033;
+  padding: 48px 32px 32px 32px;
+  width: 100%;
+  max-width: 430px;
+  animation: fadeIn 0.8s;
+  margin: 0 auto;
+  font-family: 'Poppins', Arial, sans-serif;
+  transition: box-shadow 0.22s, transform 0.22s;
+  &:hover {
+    box-shadow: 0 8px 32px #ffd70055;
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+
+.login-title {
+  background: #fffbe9;
+  color: #fb8c00;
+  border-radius: 10px;
+  font-size: 2.1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px #ffd70022;
+  padding: 0.28em 0.9em;
+  display: inline-block;
+  margin-bottom: 0.7rem;
+}
+
+.btn, .login-btn {
+  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
+  color: #4a2e00;
+  border: none;
+  border-radius: 18px;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 600;
+  box-shadow: 0 2px 8px #ffa72633;
+  padding: 0.7em 2em;
+  font-size: 1.08em;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, transform 0.1s;
+}
+.btn:hover, .login-btn:hover {
+  background: linear-gradient(135deg, #ffa726 0%, #ffd700 100%);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+
 
 @keyframes slideUp {
   from {
@@ -34,17 +106,58 @@
 /* Título */
 .login-title {
   text-align: center;
-  margin-bottom: 30px;
-  color: white; /* Texto blanco para contrastar con el fondo naranja */
-  font-size: 28px;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 26px;
+  color: #ffa726;
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 8px #ffd70055;
+  background: rgba(255,255,255,0.75);
+  padding: 0.4em 1.2em;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px #ffd70022;
+  display: inline-block;
 }
 
 /* Formulario */
 .login-form {
   margin-bottom: 25px;
 }
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #ffa726;
+  font-weight: 600;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.7);
+  border-radius: 14px;
+  padding: 0.2em 0.9em;
+  box-shadow: 0 1px 4px #ffd70022;
+  display: inline-block;
+}
+
+.form-control, .modern-input {
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: 18px;
+  border: 1.5px solid #ffe59a;
+  background: linear-gradient(135deg, #fffbe6 80%, #fffde4 100%);
+  font-size: 1.08em;
+  color: #5C4033;
+  box-shadow: 0 1px 6px #ffd70011;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.form-control:focus {
+  outline: none;
+  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
+  color: #fff;
+  box-shadow: 0 6px 18px #ffa72688;
+}
+
 
 /* Grupos de campos */
 .form-group {
@@ -107,29 +220,23 @@
 }
 
 /* Botón principal */
-.btn-primary {
+.login-btn {
   width: 100%;
-  background: white;
-  color: #FFA500;
-  border: 2px solid white;
-  padding: 14px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px #ffd70044;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+  transition: background 0.2s, color 0.2s, transform 0.12s;
 }
-
-.btn-primary:hover {
-  background: #f8f9fa;
-  color: #ff8c00;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
+.login-btn:hover {
+  background: #fb8c00;
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
 }
 
 /* Link de registro */

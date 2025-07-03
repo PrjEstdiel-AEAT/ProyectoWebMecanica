@@ -1,0 +1,39 @@
+<div class="balloon-card paso5-balloon">
+  <h2 class="paso-title">Paso 5: Confirmar Reserva</h2>
+  <div class="paso5-container balloon-bg">
+    <div class="paso5-row">
+      <div class="paso5-col">
+        <div class="paso5-item balloon-card">
+          <label class="paso5-label">Cliente</label>
+          <div class="dato-reserva">{{ cliente }}</div>
+        </div>
+        <div class="paso5-item balloon-card">
+          <label class="paso5-label">Email</label>
+          <div class="dato-reserva">{{ email }}</div>
+        </div>
+        <div class="paso5-item balloon-card">
+          <label class="paso5-label">Teléfono</label>
+          <div class="dato-reserva">{{ telefono }}</div>
+        </div>
+      </div>
+      <div class="paso5-col">
+        <div class="paso5-item balloon-card">
+          <label class="paso5-label">Servicio</label>
+          <div class="dato-reserva">{{ servicio }}</div>
+        </div>
+        <div class="paso5-item balloon-card">
+          <label class="paso5-label">Trabajador</label>
+          <div class="dato-reserva">{{ trabajador }}</div>
+        </div>
+        <div class="paso5-item balloon-card">
+          <label class="paso5-label">Fecha y hora</label>
+          <div class="dato-reserva">{{ fecha }} {{ hora }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="paso5-botones">
+      <button (click)="cancelar()" class="btn-cuadro balloon-btn">Cancelar</button>
+      <button (click)="confirmarCita()" class="btn-cuadro balloon-btn btn-primary">Confirmar Cita</button>
+    </div>
+  </div>
+</div>

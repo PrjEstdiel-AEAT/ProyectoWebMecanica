@@ -1,0 +1,16 @@
+<div class="balloon-card paso3-balloon">
+  <h2 class="paso-title">Paso 3: Seleccionar Trabajador</h2>
+  <div class="paso3-container balloon-bg">
+    <div class="trabajadores-lista">
+      <div *ngFor="let trabajador of trabajadores; let i = index"
+           (click)="seleccionarTrabajador(i)"
+           [ngClass]="{'trabajador-item balloon-card': true, 'seleccionado': trabajadorSeleccionado === i, 'no-seleccionado': trabajadorSeleccionado !== i}">
+        {{ trabajador.nombre }}
+      </div>
+    </div>
+    <div class="paso3-botones">
+      <button (click)="irAtras()" type="button" class="btn-cuadro">Regresar</button>
+      <button (click)="finalizarPaso()" type="button" [disabled]="trabajadorSeleccionado === null" class="btn-cuadro">Siguiente</button>
+    </div>
+  </div>
+</div>

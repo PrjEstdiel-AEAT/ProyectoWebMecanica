@@ -1,0 +1,31 @@
+<div class="balloon-card paso1-balloon">
+  <h2 class="paso-title">Paso 1: Datos Personales</h2>
+  <div class="form-datos-personales">
+    <div class="form-row">
+      <div class="form-col">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input id="nombre" type="text" class="input-datos modern-input" placeholder="Nombre" [(ngModel)]="nombre" name="nombre" />
+        <div class="error-message" *ngIf="errores['nombre']">{{ errores['nombre'] }}</div>
+      </div>
+      <div class="form-col">
+        <label for="apellidos" class="form-label">Apellidos</label>
+        <input id="apellidos" type="text" class="input-datos modern-input" placeholder="Apellidos" [(ngModel)]="apellidos" name="apellidos" />
+        <div class="error-message" *ngIf="errores['apellidos']">{{ errores['apellidos'] }}</div>
+      </div>
+    </div>
+    <div>
+      <label for="email" class="form-label">Email</label>
+      <input id="email" type="email" class="input-datos modern-input" placeholder="Email" [(ngModel)]="email" name="email" />
+      <div class="error-message" *ngIf="errores['email']">{{ errores['email'] }}</div>
+    </div>
+    <div>
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input id="telefono" type="text" class="input-datos modern-input" placeholder="Teléfono" [(ngModel)]="telefono" name="telefono" />
+      <div class="error-message" *ngIf="errores['telefono']">{{ errores['telefono'] }}</div>
+    </div>
+    <div class="form-botones">
+      <button (click)="irAtras()" type="button" class="btn-cuadro">Regresar</button>
+      <button (click)="finalizarPaso()" type="button" class="btn-cuadro">Siguiente</button>
+    </div>
+  </div>
+</div>

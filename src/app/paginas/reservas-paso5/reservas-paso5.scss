@@ -1,0 +1,253 @@
+.paso5-balloon {
+  background: linear-gradient(120deg, #fffbe6 80%, #ffe259 100%);
+  border-radius: 28px;
+  box-shadow: 0 2px 14px #ffd70033;
+  border: 1.5px solid #ffe25977;
+  color: #5C4033;
+  padding: 40px 28px 28px 28px;
+  margin: 150px auto 32px auto;
+  max-width: 800px;
+  animation: fadeIn 0.8s;
+  font-family: 'Poppins', sans-serif;
+  transition: box-shadow 0.22s, transform 0.22s;
+  &:hover {
+    box-shadow: 0 8px 32px #ffd70055;
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+.paso-title {
+  text-align: center;
+  color: #ffa726;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 1.3rem;
+  text-shadow: 0 2px 8px #ffd70033;
+}
+
+.paso5-container.balloon-bg {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+.paso5-row {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.paso5-col {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+}
+
+.paso5-item.balloon-card {
+  min-width: 270px;
+  max-width: 340px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2em;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.paso5-label {
+  font-size: 1.15em;
+  color: #fb8c00;
+  letter-spacing: 0.02em;
+  min-width: 90px;
+  text-align: left;
+  margin-right: 0.7em;
+}
+
+.dato-reserva {
+  flex: 1;
+  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
+  min-width: 120px;
+  min-height: 32px;
+  border-radius: 30px;
+  font-size: 1.12em;
+  font-weight: bold;
+  padding: 0.3em 1.2em;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  color: #333;
+  box-shadow: 0 2px 8px #ffa72633;
+  transition: background 0.18s, color 0.18s;
+  justify-content: flex-start;
+}
+
+.paso5-botones {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5em;
+  gap: 2.5em;
+}
+.paso5-botones button {
+  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
+  color: #fff;
+  font-size: 1.18em;
+  font-weight: bold;
+  border: none;
+}
+
+// --- MEDIA QUERIES RESPONSIVE ---
+@media (max-width: 900px) {
+  .paso5-balloon {
+    max-width: 99vw;
+    padding: 24px 8px 16px 8px;
+  }
+  .paso5-row {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+  .paso5-item.balloon-card {
+    min-width: 90vw;
+    max-width: 99vw;
+    font-size: 1.05em;
+    padding: 0.8em 0.5em;
+  }
+  .paso5-botones {
+    flex-direction: column;
+    gap: 1em;
+    align-items: stretch;
+  }
+  .paso5-botones button {
+    width: 100%;
+    font-size: 1em;
+    padding: 0.7em 1.2em;
+  }
+}
+@media (max-width: 600px) {
+  .paso5-balloon {
+    padding: 10px 2px 10px 2px;
+  }
+  .paso5-item.balloon-card {
+    font-size: 0.98em;
+    padding: 0.5em 0.2em;
+  }
+  .paso5-botones button {
+    font-size: 0.97em;
+    padding: 0.5em 0.7em;
+  }
+}
+
+.paso5-botones button {
+  padding: 0.75em 2.4em;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #ffa72677;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+  outline: none;
+  margin: 0;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.paso5-botones button:disabled {
+  background: #ffe0b2;
+  color: #aaa;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.paso5-botones button:not(:disabled):hover {
+  background: #fb8c00;
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px #ffa72699;
+}
+.paso5-botones .btn-primary {
+  background: linear-gradient(135deg, #ffa726 0%, #ffd700 100%);
+  color: #fff;
+  border: none;
+}
+
+@media (max-width: 800px) {
+  .paso5-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+  }
+  .paso5-col {
+    width: 100%;
+    max-width: 340px;
+  }
+  .paso5-item.balloon-card {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .paso5-botones {
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    max-width: 340px;
+    margin: 2em auto 0 auto;
+  }
+}
+.paso5-label {
+  font-size: 1.5em;
+  color: #fb8c00;
+  letter-spacing: 0.02em;
+}
+
+.dato-reserva {
+  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
+  min-width: 200px;
+  min-height: 32px;
+  border-radius: 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.3em 1.5em;
+  margin-top: 0.2em;
+  display: inline-block;
+  color: #333;
+  box-shadow: 0 2px 8px #ffa72633;
+  transition: background 0.18s, color 0.18s;
+}
+
+.paso5-botones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+  gap: 2em;
+}
+
+.paso5-btn-cancelar,
+.paso5-btn-confirmar {
+  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
+  color: #fff;
+  font-size: 1.25em;
+  font-weight: bold;
+  border: none;
+  padding: 0.7em 2.2em;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #ffa72655;
+  transition: background 0.2s, color 0.2s, transform 0.12s;
+}
+.paso5-btn-cancelar:disabled,
+.paso5-btn-confirmar:disabled {
+  background: #ffe0b2;
+  color: #aaa;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.paso5-btn-cancelar:not(:disabled):hover,
+.paso5-btn-confirmar:not(:disabled):hover {
+  background: #fb8c00;
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}

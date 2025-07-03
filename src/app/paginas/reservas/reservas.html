@@ -1,0 +1,37 @@
+<div class="contenedor-reservas">
+  <p *ngIf="user" class="usuario-autenticado">Bienvenido, {{ user }}</p>
+  <ng-container [ngSwitch]="pasoActual">
+    <app-reservas-paso1 *ngSwitchCase="1" (completado)="completarPaso(1, $event)"></app-reservas-paso1>
+    <app-reservas-paso2 *ngSwitchCase="2" (completado)="completarPaso(2, $event)"></app-reservas-paso2>
+    <app-reservas-paso3 *ngSwitchCase="3" (completado)="completarPaso(3, $event)"></app-reservas-paso3>
+    <app-reservas-paso4 *ngSwitchCase="4" (finalizado)="completarPaso(4, $event)"></app-reservas-paso4>
+    <app-reservas-paso5 *ngSwitchCase="5"
+      [cliente]="cliente"
+      [email]="email"
+      [telefono]="telefono"
+      [servicio]="servicio"
+      [trabajador]="trabajador"
+      [fecha]="fecha"
+      [hora]="hora"
+      (citaConfirmada)="onReservaFinalizada()"
+      (citaCancelada)="avanzarPaso(1)"></app-reservas-paso5>
+  </ng-container>
+  <nav class="navegacion-pasos-stepper" aria-label="Navegación de pasos">
+  <div class="stepper-container">
+    <ng-container *ngFor="let paso of [1,2,3,4,5]; let i = index">
+      <button
+        class="step-circle"
+        [class.active]="pasoActual === paso"
+        [class.completed]="pasosCompletados[paso-1]"
+        [disabled]="paso > 1 && !pasosCompletados[paso-2]"
+        (click)="avanzarPaso(paso)"
+        [attr.aria-current]="pasoActual === paso ? 'step' : null"
+        [attr.aria-disabled]="paso > 1 && !pasosCompletados[paso-2] ? 'true' : null"
+        tabindex="0">
+        {{paso}}
+      </button>
+      <div *ngIf="i < 4" class="step-line"></div>
+    </ng-container>
+  </div>
+</nav>
+</div>

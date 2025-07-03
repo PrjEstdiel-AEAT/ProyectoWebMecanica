@@ -1,7 +1,6 @@
-<div class="login-container">
-  <div class="login-card">
+<div class="login-container balloon-bg">
+  <div class="login-card balloon-card">
     <h3 class="login-title">Iniciar Sesión</h3>
-    
     <form (ngSubmit)="login()" class="login-form">
       <!-- Campo Email -->
       <div class="form-group">
@@ -9,7 +8,7 @@
         <input 
           type="email" 
           id="email"
-          class="form-control"
+          class="form-control modern-input"
           [class.error]="errors['email']"
           [(ngModel)]="email" 
           name="email" 
@@ -26,7 +25,7 @@
         <input 
           type="password" 
           id="password"
-          class="form-control"
+          class="form-control modern-input"
           [class.error]="errors['password']"
           [(ngModel)]="password" 
           name="password" 
@@ -37,12 +36,12 @@
         </div>
       </div>
 
-      <button type="submit" class="btn-primary">
+      <button type="submit" class="btn-cuadro w-100 mt-2">
         Iniciar Sesión
       </button>
     </form>
 
-    <div class="register-link">
+    <div class="register-link mt-4">
       <p>¿No tienes cuenta?</p>
       <a routerLink="/registro" class="link">Crear cuenta nueva</a>
     </div>
@@ -53,7 +52,7 @@
     <div class="modal-content" (click)="$event.stopPropagation()">
       <div class="modal-header">
         <h4>Notificación</h4>
-        <button class="close-btn" (click)="closeModal()">&times;</button>
+        <button class="close-btn modern-close" (click)="closeModal()">&times;</button>
       </div>
       <div class="modal-body">
         <p>{{ modalMessage }}</p>

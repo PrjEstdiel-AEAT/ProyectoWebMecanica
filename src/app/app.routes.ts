@@ -5,6 +5,8 @@ import { Nosotros } from './paginas/nosotros/nosotros';
 import { Contacto } from './paginas/contacto/contacto';
 import { Login } from './paginas/login/login';
 import { Registro } from './paginas/registro/registro';
+import { ReservasComponent } from './paginas/reservas/reservas';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
     {
@@ -37,6 +39,11 @@ export const routes: Routes = [
         component: Registro
     }
     ,
+    {
+        path: 'reservas',
+        component: ReservasComponent,
+        canActivate: [AuthGuard]
+    },
     {
         path: '**',
         redirectTo: ''  

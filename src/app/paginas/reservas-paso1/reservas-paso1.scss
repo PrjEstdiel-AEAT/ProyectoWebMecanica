@@ -1,0 +1,148 @@
+.paso1-balloon {
+  background: linear-gradient(120deg, #fffbe6 85%, #ffe259 100%);
+  border-radius: 28px;
+  box-shadow: 0 4px 24px #ffd70033, 0 1.5px 6px #ffa72622;
+  border: 1.5px solid #ffe25977;
+  color: #5C4033;
+  padding: 48px 32px 32px 32px;
+  width: 100%;
+  max-width: 430px;
+  animation: fadeIn 0.8s;
+  margin: 150px auto 0 auto;
+  font-family: 'Poppins', Arial, sans-serif;
+  transition: box-shadow 0.22s, transform 0.22s;
+  position: relative;
+  z-index: 2;
+  &:hover {
+    box-shadow: 0 8px 32px #ffd70055;
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+.paso-title {
+  text-align: center;
+  color: #ffa726;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 1.3rem;
+  text-shadow: 0 2px 8px #ffd70033;
+}
+
+.form-datos-personales {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+.form-row {
+  display: flex;
+  gap: 2rem;
+}
+
+.form-col {
+  flex: 1;
+}
+
+.input-datos {
+  width: 100%;
+  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
+  border: none;
+  height: 2.2em;
+  margin-bottom: 0.2em;
+  border-radius: 30px;
+  padding: 0.2em 1em;
+  font-size: 1.1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px #ffa72633;
+  color: #333;
+  transition: box-shadow 0.18s, background 0.18s, color 0.18s;
+}
+.input-datos:focus {
+  outline: none;
+  background: linear-gradient(135deg, #ffe082 0%, #ff9800 100%);
+  color: #fff;
+  box-shadow: 0 6px 18px #ffa72688;
+}
+
+.form-botones {
+  display: flex;
+  gap: 1.3em;
+  margin-top: 2.2em;
+  justify-content: center;
+}
+.form-botones button {
+  background: #ffa726;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 0.7em 2.2em;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #ffa72655;
+  transition: background 0.2s, color 0.2s, transform 0.12s;
+}
+.form-botones button:disabled {
+  background: #ffe0b2;
+  color: #aaa;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.form-botones button:not(:disabled):hover {
+  background: #fb8c00;
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.error-message {
+  color: #c00;
+  font-size: 0.98em;
+  margin-bottom: 0.4em;
+  background: #fffbe9;
+}
+
+@media (max-width: 900px) {
+  .paso1-balloon {
+    max-width: 99vw;
+    padding: 24px 8px 16px 8px;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .form-botones {
+    flex-direction: column;
+    gap: 0.7em;
+  }
+  .form-botones button {
+    width: 100%;
+    font-size: 1em;
+    padding: 0.7em 1.2em;
+  }
+  .input-datos {
+    font-size: 1em;
+    padding: 0.2em 0.6em;
+  }
+}
+@media (max-width: 600px) {
+  .paso1-balloon {
+    padding: 10px 2px 10px 2px;
+  }
+  .form-botones button {
+    font-size: 0.97em;
+    padding: 0.5em 0.7em;
+  }
+  .input-datos {
+    font-size: 0.95em;
+    padding: 0.1em 0.4em;
+  }
+}
+
+.error-message {
+  border-radius: 16px;
+  padding: 0.2em 1em;
+  box-shadow: 0 1px 4px #ffa72622;
+  display: inline-block;
+}

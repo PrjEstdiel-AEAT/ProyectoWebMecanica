@@ -1,0 +1,16 @@
+<div class="balloon-card paso2-balloon">
+  <h2 class="paso-title">Paso 2: Seleccionar Servicios</h2>
+  <div class="paso2-container balloon-bg">
+    <div class="servicios-lista">
+      <div *ngFor="let servicio of servicios; let i = index"
+           (click)="seleccionarServicio(i)"
+           [ngClass]="{'servicio-item balloon-card': true, 'seleccionado': servicioSeleccionado === i, 'no-seleccionado': servicioSeleccionado !== i}">
+        {{ servicio.titulo }}
+      </div>
+    </div>
+    <div class="paso2-botones">
+      <button (click)="irAtras()" type="button" class="btn-cuadro">Regresar</button>
+      <button (click)="finalizarPaso()" type="button" [disabled]="servicioSeleccionado === null" class="btn-cuadro">Siguiente</button>
+    </div>
+  </div>
+</div>

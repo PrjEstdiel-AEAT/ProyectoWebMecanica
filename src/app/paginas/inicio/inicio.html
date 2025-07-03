@@ -5,28 +5,27 @@
 <div class="hero-section">
     <div class="overlay">
         <div class="hero-content">
-            <h2>WhatsApp +51 929 385 047</h2>
-            <h1>Bienvenido a AUTOMOTIVE</h1>
-            <h1>Un taller mecánico con buenos profesionales</h1>
-            <p>---------------------------------------------</p>
-            <p>Auxilio Mecánico LIMA</p>
-            <br>
-            <a [routerLink]="['/contacto']" class="btn-contacto">Ponte en contacto</a>
+            <h2 class="hero-subtitle">¡Tu auto en las mejores manos!</h2>
+            <h1 class="hero-title">AUTOMOTIVE</h1>
+            <p class="hero-desc">Soluciones profesionales en mecánica, auxilio y servicios a domicilio en Lima.</p>
+            <a [routerLink]="['/contacto']" class="btn-contacto">Contáctanos por WhatsApp</a>
         </div>
     </div>
 </div>
 
-<div class="container text-center mt-4">
-    <div class="row align-items-center">
-        <div class="col-md-8 texto-marron text-md-start text-center">
-            <strong>Bienvenido AUTOMOTIVE</strong><br>
-            Mecánicos a domicilio, auxilio mecánico y más. <br>
-            Somos la red más grande de mecánicos a domicilio en todo Lima,<br>
-            realizamos todo tipo de servicios en la comodidad de tu hogar o centro de trabajo y<br>
-            contamos con personal altamente calificado, con amplia experiencia y certificado.
-        </div>
-        <div class="col-md-4 mt-3 mt-md-0 text-center text-md-end">
-            <a [routerLink]="['/nosotros']" class="btn-cuadro">Obten más Información</a>
+<div class="container text-center mt-5">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10">
+            <div class="bienvenida-card p-4 mb-4">
+                <h3 class="mb-3">Bienvenido a <span class="text-brand">AUTOMOTIVE</span></h3>
+                <p>Somos la red líder de mecánicos certificados a domicilio en Lima. Ofrecemos:</p>
+                <ul class="list-unstyled mb-3">
+                    <li>✔️ Auxilio mecánico rápido y seguro</li>
+                    <li>✔️ Mantenimiento y reparación a domicilio</li>
+                    <li>✔️ Atención personalizada y profesional</li>
+                </ul>
+                <a [routerLink]="['/nosotros']" class="btn-cuadro">Conoce más sobre nosotros</a>
+            </div>
         </div>
     </div>
 </div>
@@ -35,14 +34,14 @@
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-sm-10 col-md-6 col-lg-5 mb-4" *ngFor="let servicio of servicios">
-            <div class="card h-100">
-                <img [src]="servicio.imagen" class="card-img-top" alt="{{ servicio.titulo }}">
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{ servicio.titulo }}</h5>
-                    <p class="card-text">{{ servicio.descripcion }}</p>
-                    <a [routerLink]="['/login']" class="btn-cuadro">Reservar Cita</a>
+        <div class="col-sm-10 col-md-6 col-lg-4 mb-4" *ngFor="let servicio of servicios">
+            <div class="servicio-card h-100 p-3">
+                <div class="servicio-img-wrap mb-3">
+                    <img [src]="servicio.imagen" alt="{{ servicio.titulo }}" class="servicio-img">
                 </div>
+                <h5 class="servicio-title mb-2">{{ servicio.titulo }}</h5>
+                <p class="servicio-desc mb-3">{{ servicio.descripcion }}</p>
+                <a [routerLink]="['/login']" class="btn-cuadro">Reservar Cita</a>
             </div>
         </div>
     </div>
@@ -52,8 +51,8 @@
 
 <div class="container mt-4">
   <div class="row justify-content-center">
-    <div class="col-sm-10 col-md-6 col-lg-5 mb-4" *ngFor="let socio of socios">
-      <div class="socio-card">
+    <div class="col-6 col-md-4 col-lg-2 mb-4" *ngFor="let socio of socios">
+      <div class="socio-bubble mx-auto">
         <img [src]="socio.imagen" alt="Socio" class="socio-img">
       </div>
     </div>

@@ -10,6 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './registro.scss'
 })
 export class Registro {
+  nombre: string = '';
+  apellido: string = '';
+  dni: string = '';
+  telefono: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -50,6 +54,22 @@ export class Registro {
     // Validar cada campo
     let hasErrors = false;
 
+    if (!this.nombre) {
+      this.errors['nombre'] = 'El nombre es obligatorio';
+      hasErrors = true;
+    }
+    if (!this.apellido) {
+      this.errors['apellido'] = 'El apellido es obligatorio';
+      hasErrors = true;
+    }
+    if (!this.dni) {
+      this.errors['dni'] = 'El DNI es obligatorio';
+      hasErrors = true;
+    }
+    if (!this.telefono) {
+      this.errors['telefono'] = 'El teléfono es obligatorio';
+      hasErrors = true;
+    }
     if (!this.email) {
       this.errors['email'] = 'El correo electrónico es obligatorio';
       hasErrors = true;
@@ -82,6 +102,21 @@ export class Registro {
     }
 
     // Si todo está bien, crear la cuenta
+    // Guardar usuario en localStorage
+    const usuariosStr = localStorage.getItem('usuarios') || '[]';
+    const usuarios = JSON.parse(usuariosStr);
+    // Verifica que el email no exista
+    if (usuarios.some((u: any) => u.email === this.email)) {
+      this.showErrorModal('El correo ya está registrado');
+      return;
+    }
+    usuarios.push({
+      nombre: this.nombre,
+      apellido: this.apellido,
+      email: this.email,
+      password: this.password
+    });
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
     this.showErrorModal('¡Cuenta creada exitosamente!');
     setTimeout(() => {
       this.router.navigate(['/login']);

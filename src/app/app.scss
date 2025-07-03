@@ -1,4 +1,7 @@
 /* Puedes poner esto en styles.scss o en el contenedor principal */
 .main-content {
-  padding-top: 160px; /* Ajusta según la altura real de tu header */
+  padding-top: 0 !important;
+  transition: padding 0.18s;
 }
+
+// Si necesitas padding para otras páginas, usa una clase extra o selector más específico.
