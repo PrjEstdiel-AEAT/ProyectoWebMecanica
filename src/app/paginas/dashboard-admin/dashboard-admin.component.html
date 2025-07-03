@@ -1,0 +1,85 @@
+<div class="dashboard-admin">
+  <h1>Dashboard Administrador</h1>
+
+  <section class="usuarios-section">
+    <h2>Usuarios</h2>
+    <button (click)="showUsuarioForm = !showUsuarioForm">Agregar Usuario</button>
+    <form *ngIf="showUsuarioForm" (ngSubmit)="agregarUsuario(nuevoUsuario); showUsuarioForm = false; nuevoUsuario = {id: 0, nombre: '', email: '', rol: 'cliente'}" #usuarioForm="ngForm">
+      <input [(ngModel)]="nuevoUsuario.nombre" name="nombre" placeholder="Nombre" required />
+      <input [(ngModel)]="nuevoUsuario.email" name="email" placeholder="Email" required />
+      <select [(ngModel)]="nuevoUsuario.rol" name="rol">
+        <option value="admin">Administrador</option>
+        <option value="empleado">Empleado</option>
+        <option value="cliente">Cliente</option>
+      </select>
+      <button type="submit">Guardar</button>
+    </form>
+    <table>
+      <thead>
+        <tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Acciones</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of usuarios">
+          <td><input [(ngModel)]="u.nombre" name="nombre{{u.id}}" /></td>
+          <td><input [(ngModel)]="u.email" name="email{{u.id}}" /></td>
+          <td>
+            <select [(ngModel)]="u.rol" name="rol{{u.id}}">
+              <option value="admin">Administrador</option>
+              <option value="empleado">Empleado</option>
+              <option value="cliente">Cliente</option>
+            </select>
+          </td>
+          <td>
+            <button (click)="editarUsuario(u)">Actualizar</button>
+            <button (click)="eliminarUsuario(u.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="reservas-section">
+    <h2>Reservas</h2>
+    <button (click)="showReservaForm = !showReservaForm">Agregar Reserva</button>
+    <form *ngIf="showReservaForm" (ngSubmit)="agregarReserva(nuevaReserva); showReservaForm = false; nuevaReserva = {id: 0, usuarioId: 3, fecha: '', hora: '', estado: 'pendiente'}" #reservaForm="ngForm">
+      <select [(ngModel)]="nuevaReserva.usuarioId" name="usuarioId">
+        <option *ngFor="let u of usuarios" [value]="u.id">{{u.nombre}}</option>
+      </select>
+      <input [(ngModel)]="nuevaReserva.fecha" name="fecha" type="date" required />
+      <input [(ngModel)]="nuevaReserva.hora" name="hora" placeholder="Hora" required />
+      <select [(ngModel)]="nuevaReserva.estado" name="estado">
+        <option value="pendiente">Pendiente</option>
+        <option value="confirmada">Confirmada</option>
+        <option value="cancelada">Cancelada</option>
+      </select>
+      <button type="submit">Guardar</button>
+    </form>
+    <table>
+      <thead>
+        <tr><th>Usuario</th><th>Fecha</th><th>Hora</th><th>Estado</th><th>Acciones</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of reservas">
+          <td>
+            <select [(ngModel)]="r.usuarioId" name="usuarioId{{r.id}}">
+              <option *ngFor="let u of usuarios" [value]="u.id">{{u.nombre}}</option>
+            </select>
+          </td>
+          <td><input [(ngModel)]="r.fecha" name="fecha{{r.id}}" type="date" /></td>
+          <td><input [(ngModel)]="r.hora" name="hora{{r.id}}" /></td>
+          <td>
+            <select [(ngModel)]="r.estado" name="estado{{r.id}}">
+              <option value="pendiente">Pendiente</option>
+              <option value="confirmada">Confirmada</option>
+              <option value="cancelada">Cancelada</option>
+            </select>
+          </td>
+          <td>
+            <button (click)="editarReserva(r)">Actualizar</button>
+            <button (click)="eliminarReserva(r.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

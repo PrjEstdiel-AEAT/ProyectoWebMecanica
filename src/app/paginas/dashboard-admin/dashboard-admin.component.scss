@@ -1,0 +1,59 @@
+.dashboard-admin {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 2em;
+  background: #fffbe6;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px #ffd70044;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+.dashboard-admin h1 {
+  text-align: center;
+  color: #fb8c00;
+  margin-bottom: 2rem;
+}
+.dashboard-admin section {
+  margin-bottom: 3rem;
+}
+.dashboard-admin table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.dashboard-admin th, .dashboard-admin td {
+  border: 1px solid #ffd70055;
+  padding: 0.7em 1em;
+  text-align: left;
+}
+.dashboard-admin th {
+  background: linear-gradient(90deg, #ffd700 60%, #ffa726 100%);
+  color: #fff;
+}
+.dashboard-admin tr:nth-child(even) {
+  background: #fffbe6;
+}
+.dashboard-admin input, .dashboard-admin select {
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  border: 1px solid #ffd70077;
+  font-size: 1em;
+  margin-right: 0.3em;
+}
+.dashboard-admin button {
+  background: #ffa726;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 0.4em 1.1em;
+  font-size: 1em;
+  font-weight: 600;
+  margin-right: 0.3em;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.dashboard-admin button:hover {
+  background: #fb8c00;
+}

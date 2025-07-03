@@ -64,6 +64,28 @@ export class ReservasComponent {
   }
 
   onReservaFinalizada() {
+    // Guardar la reserva en localStorage
+    const reservasStr = localStorage.getItem('reservas') || '[]';
+    const reservas = JSON.parse(reservasStr);
+    // Buscar usuarioId por email
+    let usuarioId = 0;
+    const usuariosStr = localStorage.getItem('usuarios') || '[]';
+    const usuarios = JSON.parse(usuariosStr);
+    const usuario = usuarios.find((u: any) => u.email === this.email);
+    if (usuario) {
+      usuarioId = usuario.id || usuarios.indexOf(usuario) + 1;
+    }
+    reservas.push({
+      id: Date.now(),
+      usuarioId: usuarioId,
+      fecha: this.fecha,
+      hora: this.hora,
+      estado: 'confirmada',
+      cliente: this.cliente,
+      servicio: this.servicio,
+      trabajador: this.trabajador
+    });
+    localStorage.setItem('reservas', JSON.stringify(reservas));
     alert('¡Reserva confirmada! Se enviará un correo de confirmación.');
     this.router.navigate(['/inicio']);
   }

@@ -8,6 +8,8 @@ import { Registro } from './paginas/registro/registro';
 import { ReservasComponent } from './paginas/reservas/reservas';
 import { AuthGuard } from './auth.guard';
 
+import { DashboardAdminComponent } from './paginas/dashboard-admin/dashboard-admin.component';
+
 export const routes: Routes = [
     {
         path:'',
@@ -43,6 +45,10 @@ export const routes: Routes = [
         path: 'reservas',
         component: ReservasComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'dashboard-admin',
+        component: DashboardAdminComponent
     },
     {
         path: '**',
