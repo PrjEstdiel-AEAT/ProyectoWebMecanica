@@ -1,0 +1,38 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<div class="cliente-dashboard-container">
+  <div class="bienvenida-card">
+    <img src="/img/user-welcome.svg" alt="Bienvenido" class="bienvenida-img" />
+    <div>
+      <h2>¡Hola, <span class="text-brand">{{ usuario.nombre }}</span>!</h2>
+      <p class="bienvenida-desc">Nos alegra verte de nuevo. Aquí puedes gestionar tus reservas, consultar nuestros servicios y actualizar tu información.</p>
+    </div>
+  </div>
+  <div class="accesos-rapidos-row">
+    <div class="acceso-card" routerLink="/cliente/servicios">
+      <img src="/img/servicios-icon.svg" alt="Servicios" class="acceso-icon" />
+      <span>Ver servicios</span>
+    </div>
+    <div class="acceso-card" routerLink="/cliente/reservar">
+      <img src="/img/reservar-icon.svg" alt="Reservar" class="acceso-icon" />
+      <span>Reservar servicio</span>
+    </div>
+    <div class="acceso-card" routerLink="/cliente/historial">
+      <img src="/img/historial-icon.svg" alt="Historial" class="acceso-icon" />
+      <span>Historial de reservas</span>
+    </div>
+    <div class="acceso-card" routerLink="/cliente/perfil">
+      <img src="/img/perfil-icon.svg" alt="Perfil" class="acceso-icon" />
+      <span>Mi perfil</span>
+    </div>
+  </div>
+  <div class="descripcion-servicios">
+    <h3>¿Qué puedes hacer aquí?</h3>
+    <ul>
+      <li>✔️ Consultar y reservar servicios de mecánica y auxilio</li>
+      <li>✔️ Ver el historial de tus reservas y su estado</li>
+      <li>✔️ Editar tu información personal</li>
+      <li>✔️ Acceso rápido a atención personalizada</li>
+    </ul>
+  </div>
+</div>
+

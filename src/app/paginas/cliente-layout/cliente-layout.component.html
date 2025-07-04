@@ -1,0 +1,38 @@
+<div class="cliente-layout">
+  <!-- Botón hamburguesa -->
+  <button class="sidebar-toggle" (click)="toggleSidebar()">
+    <span [class.open]="isSidebarOpen">&#9776;</span>
+  </button>
+  <!-- Sidebar expandible -->
+  <nav class="sidebar" [class.closed]="!isSidebarOpen">
+    <ul class="sidebar-menu">
+      <li><a routerLink="/cliente/perfil" routerLinkActive="active"><span class="icon">👤</span><span class="text">Mi Perfil</span></a></li>
+      <li><a routerLink="/cliente" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span class="icon">🏠</span><span class="text">Dashboard</span></a></li>
+      <li><a routerLink="/cliente/servicios" routerLinkActive="active"><span class="icon">🛠️</span><span class="text">Servicios</span></a></li>
+      <li><a routerLink="/cliente/reservar" routerLinkActive="active"><span class="icon">📅</span><span class="text">Reservar</span></a></li>
+      <li><a routerLink="/cliente/historial" routerLinkActive="active"><span class="icon">📜</span><span class="text">Historial</span></a></li>
+
+    </ul>
+  </nav>
+
+  <!-- Main content with header -->
+  <div class="main-panel">
+    <header class="private-header">
+      <div class="header-logo-user">
+        <img class="header-logo" src="/img/logo.png" alt="Logo" />
+        <div class="user-info dropdown" (click)="$event.stopPropagation()">
+          <img class="avatar" src="/img/avatar-user.svg" alt="Avatar" />
+          <span class="username">{{ usuario.nombre }} {{ usuario.apellido }}</span>
+          <button type="button" class="dropdown-arrow" [class.open]="showDropdown" (click)="toggleDropdown($event)">▼</button>
+          <span style="color:red; font-size:18px;">showDropdown: {{ showDropdown }}</span>
+          <ul class="dropdown-menu" *ngIf="showDropdown">
+            <li (click)="logout()">Cerrar sesión</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="main-content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

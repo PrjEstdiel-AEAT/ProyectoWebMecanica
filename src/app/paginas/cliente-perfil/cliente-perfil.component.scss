@@ -1,0 +1,128 @@
+.perfil-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 70vh;
+  padding: 2.5rem 0 2rem 0;
+  background: none;
+}
+
+.perfil-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: linear-gradient(120deg, #fffbe6 85%, #ffe259 100%);
+  border-radius: 28px;
+  box-shadow: 0 4px 24px #ffd70033, 0 1.5px 6px #ffa72622;
+  border: 1.5px solid #ffe25977;
+  padding: 2.5rem 3.5rem;
+  gap: 2.5rem;
+  min-width: 340px;
+  max-width: 540px;
+  margin: 0 auto;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+.perfil-avatar {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px #ffd70022;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.perfil-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.perfil-nombre {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+  color: #5C4033;
+}
+
+.perfil-rol {
+  background: #ffe259;
+  color: #a67c00;
+  padding: 0.18rem 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  width: fit-content;
+}
+
+.perfil-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    label {
+      font-weight: 600;
+      color: #5C4033;
+      min-width: 90px;
+    }
+    span {
+      color: #6c4a2b;
+      font-size: 1.08rem;
+    }
+  }
+}
+
+.btn-editar {
+  background: #FFA500;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 2px 8px #ffd70022;
+  &:hover {
+    background: #ff8800;
+  }
+}
+
+@media (max-width: 700px) {
+  .perfil-card {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0.8rem;
+    gap: 1.1rem;
+    min-width: unset;
+    max-width: 98vw;
+  }
+  .perfil-avatar {
+    width: 70px;
+    height: 70px;
+  }
+  .perfil-nombre {
+    font-size: 1.2rem;
+  }
+  .perfil-rol {
+    font-size: 0.93rem;
+  }
+  .btn-editar {
+    font-size: 1rem;
+    padding: 0.5rem 1.1rem;
+  }
+}

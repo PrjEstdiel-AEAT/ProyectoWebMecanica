@@ -87,7 +87,7 @@ export class Login {
     if (redirect) {
       this.router.navigate([redirect]);
     } else {
-      this.router.navigate(['/inicio']);
+      this.router.navigate(['/cliente/perfil']);
     }
   }
 
