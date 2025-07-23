@@ -19,48 +19,48 @@
 
 
 .seccion-card, .equipo-card, .historia-card {
-    background: linear-gradient(120deg, #fffbe6 85%, #ffe259 100%);
+    background: linear-gradient(120deg,#667eea 85%,  #764ba2  100%);
     border-radius: 28px;
-    box-shadow: 0 4px 24px #ffd70033, 0 1.5px 6px #ffa72622;
+    box-shadow: 0 4px 24px rgba(102, 126, 234, 0.2), 0 1.5px 6px rgba(118, 75, 162, 0.15);
     font-family: 'Poppins', Arial, sans-serif;
-    border: 1.5px solid #ffe25977;
+    border: 1.5px solid  #764ba2 ;
     color: #5C4033;
 }
 
 .titulo-seccion, .hero-title {
-    background: #fffbe9;
-    color: #fb8c00;
+    background: white;
+    color: #764ba2 ;
     border-radius: 10px;
     font-size: 2.1rem;
     font-weight: bold;
-    box-shadow: 0 2px 8px #ffd70022;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     padding: 0.28em 0.9em;
     display: inline-block;
     margin-bottom: 0.7rem;
 }
 
 .btn, .nosotros-btn {
-    background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
-    color: #4a2e00;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #667eea;
     border: none;
     border-radius: 18px;
     font-family: 'Poppins', Arial, sans-serif;
     font-weight: 600;
-    box-shadow: 0 2px 8px #ffa72633;
+    box-shadow: 0 2px 8px #667eea;
     padding: 0.7em 2em;
     font-size: 1.08em;
     cursor: pointer;
     transition: background 0.18s, color 0.18s, transform 0.1s;
 }
 .btn:hover, .nosotros-btn:hover {
-    background: linear-gradient(135deg, #ffa726 0%, #ffd700 100%);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
     color: #fff;
     transform: scale(1.06);
 }
 
 
     .overlay {
-        background: linear-gradient(135deg, rgba(255,215,0,0.30) 0%, rgba(255,167,38,0.24) 100%);
+        
         width: 100%;
         height: 100%;
         display: flex;
@@ -72,7 +72,7 @@
             color: #fff;
             text-align: center;
             padding: 32px 28px 28px 28px;
-            background: rgba(255,255,255,0.18);
+            background:  #764ba2 ;
             border-radius: 32px;
             box-shadow: 0 4px 24px #ffd70044;
             backdrop-filter: blur(6px);
@@ -85,7 +85,7 @@
                 letter-spacing: 0.01em;
                 margin-bottom: 0.5rem;
                 color: #fff;
-                text-shadow: 0 2px 12px #ffa72677;
+                text-shadow: 0 2px 12px #667eea;
             }
             .hero-desc {
                 font-size: 1.13rem;
@@ -97,10 +97,10 @@
     }
 
 
-$titulo-color: #8B4513; // Marrón
+$titulo-color: #667eea; // Marrón
 
 .titulo-seccion {
-  color: #ffa726;
+  color:  #764ba2  #764ba2 ;
   text-align: left;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -119,18 +119,18 @@ $titulo-color: #8B4513; // Marrón
 }
 
 .info-card.balloon-card {
-  background: linear-gradient(120deg, #fffbe6 80%, #ffe259 100%);
+  background: linear-gradient(120deg, white 80%, #667eea 100%);
   border-radius: 22px;
-  box-shadow: 0 2px 14px #ffd70033;
-  border: 1.5px solid #ffe25977;
-  color: #5C4033;
+  box-shadow: 0 2px 14px #667eea;
+  border: 1.5px solid #667eea;
+  color:  #764ba2 ;
   margin-bottom: 18px;
   margin-top: 0 !important;
   transition: margin 0.18s;
   font-family: 'Poppins', sans-serif;
   transition: box-shadow 0.22s, transform 0.22s;
   &:hover {
-    box-shadow: 0 8px 32px #ffd70055;
+    box-shadow: 0 8px 32px #667eea;
     transform: translateY(-4px) scale(1.02);
   }
 }
@@ -141,14 +141,14 @@ $titulo-color: #8B4513; // Marrón
     margin-bottom: 0.5rem;
     font-size: 1.08rem;
     font-weight: 500;
-    color: #5C4033;
+    color: #667eea;
     text-align: left;
   }
 }
 
 .titulo-servicios {
   text-align: center;
-  color: #ffa726;
+  color:  #764ba2 ;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   margin-top: 40px;
@@ -197,8 +197,8 @@ $titulo-color: #8B4513; // Marrón
 }
 
 .btn-cuadro {
-    background-color: #FFD700; // amarillo
-    color: #5C4033; // marrón
+    background-color:#667eea; // amarillo
+    color: white; // marrón
     font-weight: bold;
     padding: 12px 24px;
     font-size: 1.1rem;
@@ -208,7 +208,7 @@ $titulo-color: #8B4513; // Marrón
     transition: background-color 0.3s ease;
 
     &:hover {
-        background-color: #CCAC00; // amarillo oscuro al pasar mouse
+        background-color: #764ba2 ; // amarillo oscuro al pasar mouse
         cursor: pointer;
     }
 }

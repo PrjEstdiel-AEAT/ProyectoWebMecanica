@@ -3,11 +3,14 @@
   <div class="perfil-card">
     <div class="perfil-avatar">
       <img src="/img/avatar-user.svg" alt="Avatar" />
+      <button class="btn-cambiar-foto" *ngIf="editMode">Cambiar foto</button>
     </div>
     <div class="perfil-info">
-      <h2 class="perfil-nombre">{{ usuario.nombre }} {{ usuario.apellido }}</h2>
-      <span class="perfil-rol">Cliente registrado</span>
-      <div class="perfil-datos">
+      <h2 class="perfil-nombre" *ngIf="!editMode">{{ usuario.nombre }} {{ usuario.apellido }}</h2>
+      <span class="perfil-rol" *ngIf="!editMode">Cliente registrado</span>
+      
+      <!-- Modo visualización -->
+      <div class="perfil-datos" *ngIf="!editMode">
         <div>
           <label>Email:</label>
           <span>{{ usuario.email }}</span>
@@ -21,7 +24,45 @@
           <span>{{ usuario.direccion }}</span>
         </div>
       </div>
-      <button class="btn-editar">Editar perfil</button>
+      
+      <!-- Modo edición -->
+      <form class="perfil-form" *ngIf="editMode" (ngSubmit)="guardarCambios()">
+        <div class="form-group">
+          <label>Nombre:</label>
+          <input type="text" [(ngModel)]="usuarioEdit.nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Apellido:</label>
+          <input type="text" [(ngModel)]="usuarioEdit.apellido" name="apellido" required>
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" [(ngModel)]="usuarioEdit.email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label>Teléfono:</label>
+          <input type="tel" [(ngModel)]="usuarioEdit.telefono" name="telefono">
+        </div>
+        <div class="form-group">
+          <label>Dirección:</label>
+          <input type="text" [(ngModel)]="usuarioEdit.direccion" name="direccion">
+        </div>
+        <div class="form-group">
+          <label>Nueva Contraseña:</label>
+          <input type="password" [(ngModel)]="usuarioEdit.password" name="password" placeholder="Dejar vacío para mantener actual">
+        </div>
+        <div class="form-group">
+          <label>Confirmar Contraseña:</label>
+          <input type="password" [(ngModel)]="confirmarPassword" name="confirmarPassword" placeholder="Confirmar nueva contraseña">
+        </div>
+        
+        <div class="form-buttons">
+          <button type="submit" class="btn-guardar">Guardar cambios</button>
+          <button type="button" class="btn-cancelar" (click)="cancelarEdicion()">Cancelar</button>
+        </div>
+      </form>
+      
+      <button class="btn-editar" *ngIf="!editMode" (click)="activarEdicion()">Editar perfil</button>
     </div>
   </div>
 </div>

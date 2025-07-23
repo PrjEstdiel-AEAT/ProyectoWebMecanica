@@ -1,302 +1,57 @@
+.main-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-.navbar-container {
+.navbar {
+  padding: 1rem 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
-  padding: 0px 32px;
-  box-shadow: 0 8px 32px rgba(255,167,38,0.13), 0 2px 8px rgba(0,0,0,0.08);
-  border-radius: 0 0 28px 28px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-sizing: border-box;
-  min-height: 80px;
-  transition: padding 0.18s, min-height 0.18s;
+  padding: 0 2rem;
 }
 
-@media (max-width: 900px) {
-  .navbar {
-    padding: 0 2vw;
-    font-size: 1.03rem;
-  }
-  .navbar-logo img {
-    height: 54px;
-  }
-  .navbar-menu {
-    gap: 0.7em;
-  }
-  .navbar-nav {
-    gap: 0.5em;
-  }
-  .login {
-    font-size: 1.05em;
-    padding: 0.2em 0.7em;
-    border-radius: 10px;
-  }
-  .navbar-toggler {
-    font-size: 1.3em;
-    padding: 0.25em 0.7em;
-    border-radius: 10px;
-  }
-}
-@media (max-width: 600px) {
-  .navbar {
-    padding: 0 1vw;
-    font-size: 0.98rem;
-  }
-  .navbar-logo img {
-    height: 36px;
-  }
-  .navbar-menu {
-    gap: 0.3em;
-  }
-  .navbar-nav {
-    gap: 0.2em;
-  }
-  .login {
-    font-size: 0.97em;
-    padding: 0.1em 0.4em;
-    border-radius: 7px;
-  }
-  .navbar-toggler {
-    font-size: 1.1em;
-    padding: 0.12em 0.4em;
-    border-radius: 6px;
-  }
-}
-
-  .navbar-links ul {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  transition: all 0.22s;
-}
-@media (max-width: 900px) {
-  .navbar-links ul {
-    flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
-    width: 100%;
-    margin-bottom: 0.5em;
-  }
-}
-  .navbar-links ul li a {
-  font-size: 1.05rem;
-  padding: 0.85em 1.1em;
-  border-radius: 16px;
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-  .navbar-login {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6em;
-    margin-bottom: 0.3em;
-  }
-
-
-.navbar-logo img {
-  height: 90px;
-  border-radius: 0;
-  box-shadow: none;
-  background: none;
-  padding: 0;
-  margin: 0 auto;
-  display: block;
-  transition: transform 0.18s;
-}
-.navbar-logo img:hover {
-  transform: scale(1.08) rotate(-2deg);
-}
-
-.navbar-links ul {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-links ul li a {
+.nav-logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
   text-decoration: none;
-  font-size: 1.22rem;
-  color: #5c4033;
-  font-weight: bold;
-  background: linear-gradient(90deg, #fffbe9 0%, #ffe082 100%);
-  padding: 0.45em 1.3em;
-  border-radius: 18px;
-  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
-  box-shadow: 0 2px 8px #ffd70022;
-}
-.navbar-links ul li a:hover {
-  background: #fb8c00;
-  color: #fff;
-  box-shadow: 0 6px 18px #ffa72655;
 }
 
-.navbar-login {
-  flex: 0 0 auto;
+.nav-menu {
   display: flex;
-  align-items: center;
-  gap: 1.2em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
 }
 
-.user-avatar {
-  background: linear-gradient(135deg, #fffbe9 0%, #ffd700 100%);
-  border-radius: 50%;
-  box-shadow: 0 2px 8px #ffa72655;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4em;
-  color: #fb8c00;
-  font-weight: bold;
-  margin-right: 0.7em;
-  transition: box-shadow 0.18s, transform 0.18s;
-}
-.user-avatar:hover {
-  box-shadow: 0 8px 24px #ffa72699;
-  transform: scale(1.06);
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
-.logout-btn {
-  background: linear-gradient(135deg, #ffd700 0%, #ffa726 100%);
-  color: #fff;
-  border: none;
-  border-radius: 22px;
-  padding: 0.55em 1.6em;
-  font-weight: bold;
-  font-size: 1.1em;
-  cursor: pointer;
-  box-shadow: 0 2px 8px #ffa72655;
-  transition: background 0.18s, color 0.18s, transform 0.12s;
-}
-.logout-btn:hover {
-  background: #fb8c00;
-  color: #fff;
-  transform: translateY(-2px) scale(1.04);
+.nav-menu li a:hover,
+.nav-menu li a.active {
+  background: rgba(255,255,255,0.2);
 }
 
-
-/* Logo */
-.navbar-logo {
-    flex: 0 0 auto; /* No crece ni se encoge */
+.btn-login {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
-.navbar-logo img {
-    height: 150px; /* Tamaño del logo */
+.btn-login:hover {
+  background: rgba(255,255,255,0.3);
 }
-
-/* Menú de navegación */
-.navbar-links {
-    flex: 1; /* Ocupa el espacio disponible en el centro */
-    display: flex;
-    justify-content: center;
-}
-
-.navbar-links ul {
-    display: flex;
-    gap: 20px; /* Espacio entre enlaces */
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar-links ul li a {
-    text-decoration: none;
-    font-size: 1.2rem;
-    color: black; /* Color del texto */
-    font-weight: bold;
-}
-
-.navbar-links ul li a:hover {
-    text-decoration: underline; /* Subrayar al pasar el mouse */
-}
-
-/* Iniciar sesión con imagen */
-.navbar-login {
-    flex: 0 0 auto; /* No crece ni se encoge */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 10px; /* Pequeño margen del borde derecho */
-}
-
-.navbar-login img {
-    height: 40px; /* Tamaño de la imagen del login */
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.navbar-login img:hover {
-    transform: scale(1.1);
-}
-
-/* Botón hamburguesa (invisible en pantallas grandes) */
-.hamburger-menu {
-    display: none;
-    cursor: pointer;
-    font-size: 2rem;
-    color: black;
-}
-
-/* Menú responsive en móviles */
-@media (max-width: 768px) {
-    .navbar-container {
-        flex-wrap: wrap;
-        /* Permite varias líneas en pantallas pequeñas */
-        padding: 10px;
-        /* Espaciado ajustado */
-        width: calc(100% - 20px); /* Ajuste para padding en móviles */
-
-    }
-
-    .navbar-logo img {
-        height: 40px; /* Reducir tamaño del logo */
-    }
-
-    .navbar-links {
-        order: 3; /* Colocar el menú al final */
-        flex-basis: 100%; /* Ocupa toda la línea */
-        justify-content: flex-start;
-    }
-
-    .navbar-links ul {
-        display: none; /* Ocultar menú inicialmente */
-        flex-direction: column; /* Colocar los enlaces verticalmente */
-        gap: 10px;
-        background-color: #FFD700; /* Fondo amarillo más claro */
-        width: 100%; /* Ocupa todo el ancho disponible */
-        padding: 10px;
-        border-radius: 5px;
-        margin-top: 10px;
-    }
-
-    .navbar-links ul.show {
-        display: flex; /* Mostrar el menú cuando esté activo */
-    }
-
-    .hamburger-menu {
-        display: block;
-        /* Mostrar botón hamburguesa */
-        order: 2; /* Colocar entre logo y login */
-    }
-
-    .navbar-login {
-        order: 1; /* Mantener el login a la derecha */
-        padding-right: 5px;
-    }
-
-    .navbar-login img {
-        height: 35px; /* Tamaño ligeramente menor en móviles */
-    }
-}   

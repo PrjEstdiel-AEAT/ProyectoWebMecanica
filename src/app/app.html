@@ -1,5 +1,5 @@
-<app-header *ngIf="!esRutaCliente()"></app-header>
+<app-header *ngIf="!esRutaCliente() && !esRutaAdmin() && !esRutaMecanico()"></app-header>
 <div class="main-content">
   <router-outlet></router-outlet>
 </div>
-<app-footer *ngIf="!esRutaCliente()"></app-footer>
+<app-footer *ngIf="!esRutaCliente() && !esRutaAdmin() && !esRutaMecanico()"></app-footer>

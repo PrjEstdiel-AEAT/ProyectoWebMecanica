@@ -1,0 +1,19 @@
+<div class="perfil-mecanico">
+  <h2>Perfil del Mecánico</h2>
+  <div class="info">
+    <p><strong>Nombre:</strong> {{ mecanico.nombre }}</p>
+    <p><strong>Especialidad:</strong> {{ mecanico.especialidad }}</p>
+    <p><strong>Email:</strong> {{ mecanico.email }}</p>
+    <p><strong>Teléfono:</strong> {{ mecanico.telefono }}</p>
+    <p><strong>Dirección:</strong> {{ mecanico.direccion }}</p>
+    <p><strong>Descripción:</strong> {{ mecanico.descripcion }}</p>
+  </div>
+  <div class="horarios">
+    <h3>Horarios Disponibles</h3>
+    <ul>
+      <li *ngFor="let horario of mecanico.horarios">
+        {{ horario.dia }}: {{ horario.inicio }} - {{ horario.fin }}
+      </li>
+    </ul>
+  </div>
+</div>

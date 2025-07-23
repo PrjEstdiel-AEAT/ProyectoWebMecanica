@@ -1,4 +1,296 @@
 <div class="cliente-historial">
-  <h2>Historial de Reservas</h2>
-  <!-- Aquí se mostrará el historial de reservas del usuario -->
+  <div class="header-section">
+    <h2>Historial de Reservas</h2>
+    <div class="stats-summary">
+      <div class="stat-item">
+        <span class="stat-number">{{reservas.length}}</span>
+        <span class="stat-label">Total Reservas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{contarReservasPorEstado('completada')}}</span>
+        <span class="stat-label">Completadas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{contarReservasPorEstado('pendiente')}}</span>
+        <span class="stat-label">Pendientes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reservas-container" *ngIf="reservas.length > 0; else noReservas">
+    <div class="reserva-card" *ngFor="let reserva of reservas">
+      <div class="reserva-header">
+        <div class="reserva-info">
+          <h3>{{obtenerNombreServicio(reserva.servicioId)}}</h3>
+          <p class="reserva-fecha">{{formatearFecha(reserva.fecha)}}</p>
+        </div>
+        <div class="reserva-estado" [ngClass]="obtenerClaseEstado(reserva.estado)">
+          {{reserva.estado | titlecase}}
+        </div>
+      </div>
+
+      <div class="reserva-body">
+        <div class="reserva-details">
+          <div class="detail-item">
+            <i class="fas fa-user-cog"></i>
+            <span><strong>Mecánico:</strong> {{obtenerNombreMecanico(reserva.mecanicoId)}}</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-clock"></i>
+            <span><strong>Horario:</strong> {{formatearHorario(reserva.horario)}}</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-car"></i>
+            <span><strong>Vehículo:</strong> {{reserva.datosVehiculo.marca}} {{reserva.datosVehiculo.modelo}} ({{reserva.datosVehiculo.placa}})</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-dollar-sign"></i>
+            <span><strong>Total:</strong> ${{reserva.total}}</span>
+          </div>
+        </div>
+
+        <div class="reserva-additional" *ngIf="reserva.informacionAdicional">
+          <h4>Información Adicional:</h4>
+          <p>{{reserva.informacionAdicional}}</p>
+        </div>
+
+        <div class="reserva-vehiculo">
+          <h4>Detalles del Vehículo:</h4>
+          <div class="vehiculo-grid">
+            <div class="vehiculo-item">
+              <span class="label">Marca:</span>
+              <span class="value">{{reserva.datosVehiculo.marca}}</span>
+            </div>
+            <div class="vehiculo-item">
+              <span class="label">Modelo:</span>
+              <span class="value">{{reserva.datosVehiculo.modelo}}</span>
+            </div>
+            <div class="vehiculo-item">
+              <span class="label">Año:</span>
+              <span class="value">{{reserva.datosVehiculo.anio}}</span>
+            </div>
+            <div class="vehiculo-item">
+              <span class="label">Color:</span>
+              <span class="value">{{reserva.datosVehiculo.color}}</span>
+            </div>
+            <div class="vehiculo-item">
+              <span class="label">Kilometraje:</span>
+              <span class="value">{{reserva.datosVehiculo.kilometraje | number}} km</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reserva-footer">
+        <small class="fecha-creacion">
+          Reserva creada el {{formatearFecha(reserva.fechaCreacion)}}
+        </small>
+        <div class="reserva-actions">
+          <button 
+            class="btn-sm btn-secondary" 
+            (click)="abrirModalModificar(reserva)"
+            [disabled]="reserva.estado === 'cancelada' || reserva.estado === 'completada'">
+            Modificar
+          </button>
+          <button 
+            class="btn-sm btn-danger" 
+            (click)="abrirModalCancelar(reserva)"
+            [disabled]="reserva.estado === 'cancelada' || reserva.estado === 'completada'">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noReservas>
+    <div class="no-reservas">
+      <div class="no-reservas-icon">
+        <i class="fas fa-calendar-times"></i>
+      </div>
+      <h3>No tienes reservas aún</h3>
+      <p>Cuando realices tu primera reserva, aparecerá aquí.</p>
+      <a href="/cliente/reservar" class="btn-primary">
+        <i class="fas fa-plus"></i> Hacer mi primera reserva
+      </a>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Modal de Cancelación -->
+<div class="modal-overlay" *ngIf="mostrarModalCancelar" (click)="cerrarModales()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Cancelar Reserva</h3>
+      <button class="btn-close" (click)="cerrarModales()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>¿Estás seguro de que deseas cancelar esta reserva?</p>
+      <div class="reserva-info" *ngIf="reservaSeleccionada">
+        <p><strong>Servicio:</strong> {{obtenerNombreServicio(reservaSeleccionada.servicioId)}}</p>
+        <p><strong>Mecánico:</strong> {{obtenerNombreMecanico(reservaSeleccionada.mecanicoId)}}</p>
+        <p><strong>Fecha:</strong> {{formatearFecha(reservaSeleccionada.fecha)}}</p>
+        <p><strong>Horario:</strong> {{reservaSeleccionada.horario}}</p>
+      </div>
+      <div class="warning-message">
+        <p>⚠️ Esta acción no se puede deshacer.</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="cerrarModales()">Cancelar</button>
+      <button class="btn-danger" (click)="confirmarCancelacion()">Confirmar Cancelación</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Modificación -->
+<div class="modal-overlay" *ngIf="mostrarModalModificar" (click)="cerrarModales()">
+  <div class="modal-content modal-large" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Modificar Reserva</h3>
+      <button class="btn-close" (click)="cerrarModales()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form class="form-modificacion">
+        <!-- Selección de Servicio -->
+        <div class="form-group">
+          <label for="servicio">Servicio *</label>
+          <select 
+            id="servicio" 
+            [(ngModel)]="formularioModificacion.servicioId" 
+            name="servicioId"
+            class="form-control">
+            <option value="0">Selecciona un servicio</option>
+            <option *ngFor="let servicio of servicios" [value]="servicio.id">
+              {{servicio.nombre}} - ${{servicio.precio}}
+            </option>
+          </select>
+        </div>
+
+        <!-- Selección de Mecánico -->
+        <div class="form-group">
+          <label for="mecanico">Mecánico *</label>
+          <select 
+            id="mecanico" 
+            [(ngModel)]="formularioModificacion.mecanicoId" 
+            name="mecanicoId"
+            (change)="onMecanicoChange()"
+            class="form-control">
+            <option value="0">Selecciona un mecánico</option>
+            <option *ngFor="let mecanico of mecanicos" [value]="mecanico.id">
+              {{mecanico.nombre}} {{mecanico.apellido}}
+            </option>
+          </select>
+        </div>
+
+        <!-- Fecha -->
+        <div class="form-group">
+          <label for="fecha">Fecha *</label>
+          <input 
+            type="date" 
+            id="fecha" 
+            [(ngModel)]="formularioModificacion.fecha" 
+            name="fecha"
+            (change)="onFechaChange()"
+            class="form-control">
+        </div>
+
+        <!-- Horario -->
+        <div class="form-group">
+          <label for="horario">Horario *</label>
+          <select 
+            id="horario" 
+            [(ngModel)]="formularioModificacion.horario" 
+            name="horario"
+            class="form-control">
+            <option value="">Selecciona un horario</option>
+            <option *ngFor="let horario of horariosDisponibles" [value]="horario">
+              {{horario}}
+            </option>
+          </select>
+        </div>
+
+        <!-- Datos del Vehículo -->
+        <div class="form-section">
+          <h4>Datos del Vehículo</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="marca">Marca *</label>
+              <input 
+                type="text" 
+                id="marca" 
+                [(ngModel)]="formularioModificacion.datosVehiculo.marca" 
+                name="marca"
+                class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="modelo">Modelo *</label>
+              <input 
+                type="text" 
+                id="modelo" 
+                [(ngModel)]="formularioModificacion.datosVehiculo.modelo" 
+                name="modelo"
+                class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="anio">Año</label>
+              <input 
+                type="number" 
+                id="anio" 
+                [(ngModel)]="formularioModificacion.datosVehiculo.anio" 
+                name="anio"
+                class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="placa">Placa</label>
+              <input 
+                type="text" 
+                id="placa" 
+                [(ngModel)]="formularioModificacion.datosVehiculo.placa" 
+                name="placa"
+                class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="color">Color</label>
+              <input 
+                type="text" 
+                id="color" 
+                [(ngModel)]="formularioModificacion.datosVehiculo.color" 
+                name="color"
+                class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="kilometraje">Kilometraje</label>
+              <input 
+                type="number" 
+                id="kilometraje" 
+                [(ngModel)]="formularioModificacion.datosVehiculo.kilometraje" 
+                name="kilometraje"
+                class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <!-- Información Adicional -->
+        <div class="form-group">
+          <label for="informacion">Información Adicional</label>
+          <textarea 
+            id="informacion" 
+            [(ngModel)]="formularioModificacion.informacionAdicional" 
+            name="informacionAdicional"
+            rows="3"
+            class="form-control"
+            placeholder="Describe cualquier detalle adicional sobre el servicio..."></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="cerrarModales()">Cancelar</button>
+      <button class="btn-primary" (click)="guardarModificacion()">Guardar Cambios</button>
+    </div>
+  </div>
 </div>

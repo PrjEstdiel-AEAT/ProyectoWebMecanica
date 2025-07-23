@@ -1,17 +1,17 @@
 <div class="cliente-layout">
   <!-- Botón hamburguesa -->
   <button class="sidebar-toggle" (click)="toggleSidebar()">
-    <span [class.open]="isSidebarOpen">&#9776;</span>
-  </button>
+  <span class="car-track" [class.open]="isSidebarOpen">
+    <span class="track"></span>
+    <span class="car">&#128663;</span>
+  </span>
+</button>
   <!-- Sidebar expandible -->
   <nav class="sidebar" [class.closed]="!isSidebarOpen">
     <ul class="sidebar-menu">
       <li><a routerLink="/cliente/perfil" routerLinkActive="active"><span class="icon">👤</span><span class="text">Mi Perfil</span></a></li>
-      <li><a routerLink="/cliente" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span class="icon">🏠</span><span class="text">Dashboard</span></a></li>
-      <li><a routerLink="/cliente/servicios" routerLinkActive="active"><span class="icon">🛠️</span><span class="text">Servicios</span></a></li>
-      <li><a routerLink="/cliente/reservar" routerLinkActive="active"><span class="icon">📅</span><span class="text">Reservar</span></a></li>
+      <li><a routerLink="/cliente/reservar-servicio" routerLinkActive="active"><span class="icon">🛠️</span><span class="text">Reservar Servicio</span></a></li>
       <li><a routerLink="/cliente/historial" routerLinkActive="active"><span class="icon">📜</span><span class="text">Historial</span></a></li>
-
     </ul>
   </nav>
 
@@ -20,14 +20,19 @@
     <header class="private-header">
       <div class="header-logo-user">
         <img class="header-logo" src="/img/logo.png" alt="Logo" />
-        <div class="user-info dropdown" (click)="$event.stopPropagation()">
+        <div class="user-info">
           <img class="avatar" src="/img/avatar-user.svg" alt="Avatar" />
-          <span class="username">{{ usuario.nombre }} {{ usuario.apellido }}</span>
-          <button type="button" class="dropdown-arrow" [class.open]="showDropdown" (click)="toggleDropdown($event)">▼</button>
-          <span style="color:red; font-size:18px;">showDropdown: {{ showDropdown }}</span>
-          <ul class="dropdown-menu" *ngIf="showDropdown">
-            <li (click)="logout()">Cerrar sesión</li>
-          </ul>
+          <span class="username">{{ usuario?.nombre || 'Cliente' }} {{ usuario?.apellido || 'Sistema' }}</span>
+          <div class="dropdown">
+            <button type="button" class="dropdown-toggle" (click)="toggleDropdown($event)">
+              ▼
+            </button>
+            <div class="dropdown-menu" [style.display]="showDropdown ? 'block' : 'none'">
+              <a href="#" (click)="logout(); $event.preventDefault()">
+                🚪 Cerrar sesión
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </header>

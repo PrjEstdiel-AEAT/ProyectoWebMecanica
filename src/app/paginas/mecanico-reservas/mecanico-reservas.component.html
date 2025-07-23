@@ -1,0 +1,168 @@
+<div class="reservas-mecanico">
+  <!-- Header -->
+  <div class="header-section">
+    <div class="header-content">
+      <h1>📅 Mis Reservas</h1>
+      <p>Gestiona las reservas asignadas a ti</p>
+    </div>
+    <div class="stats-cards">
+      <div class="stat-card pendientes">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-info">
+          <span class="stat-number">{{ getReservasPorEstado('pendiente').length }}</span>
+          <span class="stat-label">Pendientes</span>
+        </div>
+      </div>
+      <div class="stat-card proceso">
+        <div class="stat-icon">🔧</div>
+        <div class="stat-info">
+          <span class="stat-number">{{ getReservasPorEstado('en_proceso').length }}</span>
+          <span class="stat-label">En Proceso</span>
+        </div>
+      </div>
+      <div class="stat-card completadas">
+        <div class="stat-icon">✅</div>
+        <div class="stat-info">
+          <span class="stat-number">{{ getReservasPorEstado('completada').length }}</span>
+          <span class="stat-label">Completadas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filtros-section">
+    <div class="filtro-grupo">
+      <label for="filtroEstado">Filtrar por estado:</label>
+      <select id="filtroEstado" [(ngModel)]="filtroEstado" (change)="aplicarFiltro()" class="filtro-select">
+        <option value="todas">Todas las reservas</option>
+        <option value="pendiente">Pendientes</option>
+        <option value="confirmada">Confirmadas</option>
+        <option value="en_proceso">En Proceso</option>
+        <option value="completada">Completadas</option>
+        <option value="cancelada">Canceladas</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Lista de Reservas -->
+  <div class="reservas-lista">
+    <div *ngIf="reservasFiltradas.length === 0" class="no-reservas">
+      <div class="no-reservas-icon">📋</div>
+      <h3>No hay reservas</h3>
+      <p>No tienes reservas asignadas en este momento.</p>
+    </div>
+
+    <div *ngFor="let reserva of reservasFiltradas" class="reserva-card">
+      <div class="reserva-header">
+        <div class="cliente-info">
+          <h3>👤 {{ reserva.cliente }}</h3>
+          <span class="servicio">{{ reserva.servicio }}</span>
+        </div>
+        <div class="estado-badge" [class]="getEstadoClass(reserva.estado)">
+          {{ getEstadoTexto(reserva.estado) }}
+        </div>
+      </div>
+      
+      <div class="reserva-details">
+        <div class="detail-item">
+          <span class="detail-icon">📅</span>
+          <span class="detail-text">{{ reserva.fecha | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon">🕐</span>
+          <span class="detail-text">{{ reserva.hora }}</span>
+        </div>
+        <div class="detail-item" *ngIf="reserva.telefono">
+          <span class="detail-icon">📞</span>
+          <span class="detail-text">{{ reserva.telefono }}</span>
+        </div>
+        <div class="detail-item" *ngIf="reserva.vehiculo">
+          <span class="detail-icon">🚗</span>
+          <span class="detail-text">{{ reserva.vehiculo }}</span>
+        </div>
+      </div>
+
+      <div class="reserva-actions">
+        <div class="estado-selector">
+          <label>Cambiar estado:</label>
+          <select [(ngModel)]="reserva.estado" (change)="cambiarEstado(reserva, reserva.estado)" class="estado-select">
+            <option value="pendiente">Pendiente</option>
+            <option value="confirmada">Confirmada</option>
+            <option value="en_proceso">En Proceso</option>
+            <option value="completada">Completada</option>
+            <option value="cancelada">Cancelada</option>
+          </select>
+        </div>
+        <button (click)="verDetalles(reserva)" class="btn-detalles">
+          👁️ Ver Detalles
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Detalles -->
+<div *ngIf="mostrarModal" class="modal-overlay" (click)="cerrarModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>📋 Detalles de la Reserva</h2>
+      <button (click)="cerrarModal()" class="btn-cerrar">✕</button>
+    </div>
+    
+    <div class="modal-body" *ngIf="reservaSeleccionada">
+      <div class="detalle-grupo">
+        <h3>👤 Información del Cliente</h3>
+        <div class="detalle-item">
+          <span class="detalle-label">Nombre:</span>
+          <span class="detalle-valor">{{ reservaSeleccionada.cliente }}</span>
+        </div>
+        <div class="detalle-item" *ngIf="reservaSeleccionada.clienteEmail">
+          <span class="detalle-label">Email:</span>
+          <span class="detalle-valor">{{ reservaSeleccionada.clienteEmail }}</span>
+        </div>
+        <div class="detalle-item" *ngIf="reservaSeleccionada.telefono">
+          <span class="detalle-label">Teléfono:</span>
+          <span class="detalle-valor">{{ reservaSeleccionada.telefono }}</span>
+        </div>
+      </div>
+
+      <div class="detalle-grupo">
+        <h3>🔧 Información del Servicio</h3>
+        <div class="detalle-item">
+          <span class="detalle-label">Servicio:</span>
+          <span class="detalle-valor">{{ reservaSeleccionada.servicio }}</span>
+        </div>
+        <div class="detalle-item">
+          <span class="detalle-label">Fecha:</span>
+          <span class="detalle-valor">{{ reservaSeleccionada.fecha | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="detalle-item">
+          <span class="detalle-label">Hora:</span>
+          <span class="detalle-valor">{{ reservaSeleccionada.hora }}</span>
+        </div>
+        <div class="detalle-item">
+          <span class="detalle-label">Estado:</span>
+          <span class="detalle-valor estado-texto" [class]="getEstadoClass(reservaSeleccionada.estado)">
+            {{ getEstadoTexto(reservaSeleccionada.estado) }}
+          </span>
+        </div>
+      </div>
+
+      <div class="detalle-grupo" *ngIf="reservaSeleccionada.vehiculo">
+        <h3>🚗 Información del Vehículo</h3>
+        <div class="detalle-item">
+          <span class="detalle-label">Vehículo:</span>
+          <span class="detalle-valor">{{ reservaSeleccionada.vehiculo }}</span>
+        </div>
+      </div>
+
+      <div class="detalle-grupo" *ngIf="reservaSeleccionada.comentarios">
+        <h3>💬 Comentarios Adicionales</h3>
+        <div class="comentarios-box">
+          {{ reservaSeleccionada.comentarios }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

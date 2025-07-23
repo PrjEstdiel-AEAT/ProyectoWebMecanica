@@ -1,85 +1,193 @@
-<div class="dashboard-admin">
-  <h1>Dashboard Administrador</h1>
+<div class="dashboard-container">
+  <!-- Header del Dashboard -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">
+      <span class="icon">📊</span>
+      Dashboard Administrativo
+    </h1>
+    <div class="fecha-actual">
+      <span class="icon">📅</span>
+      {{ fechaActual }}
+    </div>
+  </div>
 
-  <section class="usuarios-section">
-    <h2>Usuarios</h2>
-    <button (click)="showUsuarioForm = !showUsuarioForm">Agregar Usuario</button>
-    <form *ngIf="showUsuarioForm" (ngSubmit)="agregarUsuario(nuevoUsuario); showUsuarioForm = false; nuevoUsuario = {id: 0, nombre: '', email: '', rol: 'cliente'}" #usuarioForm="ngForm">
-      <input [(ngModel)]="nuevoUsuario.nombre" name="nombre" placeholder="Nombre" required />
-      <input [(ngModel)]="nuevoUsuario.email" name="email" placeholder="Email" required />
-      <select [(ngModel)]="nuevoUsuario.rol" name="rol">
-        <option value="admin">Administrador</option>
-        <option value="empleado">Empleado</option>
-        <option value="cliente">Cliente</option>
-      </select>
-      <button type="submit">Guardar</button>
-    </form>
-    <table>
-      <thead>
-        <tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Acciones</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let u of usuarios">
-          <td><input [(ngModel)]="u.nombre" name="nombre{{u.id}}" /></td>
-          <td><input [(ngModel)]="u.email" name="email{{u.id}}" /></td>
-          <td>
-            <select [(ngModel)]="u.rol" name="rol{{u.id}}">
-              <option value="admin">Administrador</option>
-              <option value="empleado">Empleado</option>
-              <option value="cliente">Cliente</option>
-            </select>
-          </td>
-          <td>
-            <button (click)="editarUsuario(u)">Actualizar</button>
-            <button (click)="eliminarUsuario(u.id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+  <!-- Tarjetas de Estadísticas Principales -->
+  <div class="stats-grid">
+    <div class="stat-card usuarios">
+      <div class="stat-icon">👥</div>
+      <div class="stat-content">
+        <h3>Total Usuarios</h3>
+        <div class="stat-number">{{ estadisticas.totalUsuarios }}</div>
+        <div class="stat-detail">
+          <span class="clients">👤 {{ estadisticas.totalClientes }} Clientes</span>
+          <span class="mechanics">🔧 {{ estadisticas.totalMecanicos }} Mecánicos</span>
+        </div>
+      </div>
+    </div>
 
-  <section class="reservas-section">
-    <h2>Reservas</h2>
-    <button (click)="showReservaForm = !showReservaForm">Agregar Reserva</button>
-    <form *ngIf="showReservaForm" (ngSubmit)="agregarReserva(nuevaReserva); showReservaForm = false; nuevaReserva = {id: 0, usuarioId: 3, fecha: '', hora: '', estado: 'pendiente'}" #reservaForm="ngForm">
-      <select [(ngModel)]="nuevaReserva.usuarioId" name="usuarioId">
-        <option *ngFor="let u of usuarios" [value]="u.id">{{u.nombre}}</option>
-      </select>
-      <input [(ngModel)]="nuevaReserva.fecha" name="fecha" type="date" required />
-      <input [(ngModel)]="nuevaReserva.hora" name="hora" placeholder="Hora" required />
-      <select [(ngModel)]="nuevaReserva.estado" name="estado">
-        <option value="pendiente">Pendiente</option>
-        <option value="confirmada">Confirmada</option>
-        <option value="cancelada">Cancelada</option>
-      </select>
-      <button type="submit">Guardar</button>
-    </form>
-    <table>
-      <thead>
-        <tr><th>Usuario</th><th>Fecha</th><th>Hora</th><th>Estado</th><th>Acciones</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let r of reservas">
-          <td>
-            <select [(ngModel)]="r.usuarioId" name="usuarioId{{r.id}}">
-              <option *ngFor="let u of usuarios" [value]="u.id">{{u.nombre}}</option>
-            </select>
-          </td>
-          <td><input [(ngModel)]="r.fecha" name="fecha{{r.id}}" type="date" /></td>
-          <td><input [(ngModel)]="r.hora" name="hora{{r.id}}" /></td>
-          <td>
-            <select [(ngModel)]="r.estado" name="estado{{r.id}}">
-              <option value="pendiente">Pendiente</option>
-              <option value="confirmada">Confirmada</option>
-              <option value="cancelada">Cancelada</option>
-            </select>
-          </td>
-          <td>
-            <button (click)="editarReserva(r)">Actualizar</button>
-            <button (click)="eliminarReserva(r.id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <div class="stat-card reservas">
+      <div class="stat-icon">📅</div>
+      <div class="stat-content">
+        <h3>Reservas Totales</h3>
+        <div class="stat-number">{{ estadisticas.totalReservas }}</div>
+        <div class="stat-detail">
+          <span class="today">🔥 {{ estadisticas.reservasHoy }} Hoy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card ingresos">
+      <div class="stat-icon">💰</div>
+      <div class="stat-content">
+        <h3>Ingresos del Mes</h3>
+        <div class="stat-number">{{ formatearMoneda(estadisticas.ingresosMes) }}</div>
+        <div class="stat-detail">
+          <span class="completed">✅ {{ estadisticas.serviciosCompletados }} Completados</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card estados">
+      <div class="stat-icon">📊</div>
+      <div class="stat-content">
+        <h3>Estado Reservas</h3>
+        <div class="estado-grid">
+          <div class="estado-item pendiente">
+            <span class="numero">{{ estadisticas.reservasPendientes }}</span>
+            <span class="label">Pendientes</span>
+          </div>
+          <div class="estado-item confirmada">
+            <span class="numero">{{ estadisticas.reservasConfirmadas }}</span>
+            <span class="label">Confirmadas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Gráficos y Datos -->
+  <div class="charts-section">
+    <!-- Gráfico de Reservas por Estado -->
+    <div class="chart-card">
+      <h3 class="chart-title">
+        <span class="icon">📊</span>
+        Distribución de Reservas
+      </h3>
+      <div class="chart-container">
+        <div class="pie-chart">
+          <div class="chart-legend">
+            <div *ngFor="let label of chartReservas.labels; let i = index" class="legend-item">
+              <div class="legend-color" [style.background-color]="chartReservas.colors[i]"></div>
+              <span class="legend-label">{{ label }}</span>
+              <span class="legend-value">{{ chartReservas.data[i] }}</span>
+            </div>
+          </div>
+          <div class="pie-visual">
+            <div class="pie-center">
+              <div class="pie-total">{{ estadisticas.totalReservas }}</div>
+              <div class="pie-label">Total</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Servicios Más Populares -->
+    <div class="chart-card">
+      <h3 class="chart-title">
+        <span class="icon">🏆</span>
+        Servicios Más Populares
+      </h3>
+      <div class="services-list">
+        <div *ngFor="let servicio of serviciosPopulares" class="service-item">
+          <div class="service-info">
+            <span class="service-name">{{ servicio.nombre }}</span>
+            <span class="service-count">{{ servicio.cantidad }} servicios</span>
+          </div>
+          <div class="service-bar">
+            <div class="service-progress" [style.width.%]="servicio.porcentaje"></div>
+            <span class="service-percentage">{{ servicio.porcentaje }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ingresos de la Semana -->
+  <div class="revenue-section">
+    <div class="chart-card full-width">
+      <h3 class="chart-title">
+        <span class="icon">💹</span>
+        Ingresos de los Últimos 7 Días
+      </h3>
+      <div class="revenue-chart">
+        <div class="revenue-bars">
+          <div *ngFor="let ingreso of ingresosSemana; let i = index" class="revenue-bar">
+            <div class="bar-container">
+              <div class="bar" [style.height.%]="(ingreso.monto / 1000000) * 100"></div>
+            </div>
+            <div class="bar-label">{{ chartIngresos.labels[i] }}</div>
+            <div class="bar-value">{{ formatearMoneda(ingreso.monto) }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reservas Recientes -->
+  <div class="recent-section">
+    <div class="recent-card">
+      <h3 class="section-title">
+        <span class="icon">🕰️</span>
+        Reservas Recientes
+      </h3>
+      <div class="recent-list">
+        <div *ngFor="let reserva of reservasRecientes" class="recent-item">
+          <div class="recent-icon">{{ obtenerIconoEstado(reserva.estado) }}</div>
+          <div class="recent-content">
+            <div class="recent-main">
+              <span class="client-name">{{ reserva.cliente }}</span>
+              <span class="service-name">{{ reserva.servicio }}</span>
+            </div>
+            <div class="recent-details">
+              <span class="date">{{ reserva.fecha }}</span>
+              <span class="time">{{ reserva.hora }}</span>
+              <span class="mechanic" *ngIf="reserva.mecanico">🔧 {{ reserva.mecanico }}</span>
+            </div>
+          </div>
+          <div class="recent-status">
+            <span class="status-badge" [ngClass]="obtenerClaseEstado(reserva.estado)">
+              {{ reserva.estado | titlecase }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acciones Rápidas -->
+  <div class="quick-actions">
+    <h3 class="section-title">
+      <span class="icon">⚡</span>
+      Acciones Rápidas
+    </h3>
+    <div class="actions-grid">
+      <button class="action-btn usuarios-btn" routerLink="/admin/usuarios">
+        <span class="action-icon">👥</span>
+        <span class="action-text">Gestionar Usuarios</span>
+      </button>
+      <button class="action-btn reservas-btn" routerLink="/admin/reservas">
+        <span class="action-icon">📅</span>
+        <span class="action-text">Ver Reservas</span>
+      </button>
+      <button class="action-btn mecanicos-btn" routerLink="/admin/mecanicos">
+        <span class="action-icon">🔧</span>
+        <span class="action-text">Gestionar Mecánicos</span>
+      </button>
+      <button class="action-btn config-btn" routerLink="/admin/configuracion">
+        <span class="action-icon">⚙️</span>
+        <span class="action-text">Configuración</span>
+      </button>
+    </div>
+  </div>
 </div>
